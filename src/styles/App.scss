@@ -1,0 +1,111 @@
+@import '_shared.scss';
+
+.punxy {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.punxy__navi,
+.punxy__mast,
+.punxy__feed,
+.punxy__header {
+  padding: 32px;
+}
+
+.punxy__navi,
+.punxy__ctrl {
+  ul,
+  li {
+    display: inline-block;
+  }
+}
+
+/******************************************************************************
+ * <Header />
+*******************************************************************************/
+.punxy__header {
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.punxy__logo {
+  display: block;
+
+  img {
+    height: 32px;
+    width: auto;
+  }
+}
+
+/******************************************************************************
+ * <Navi />
+*******************************************************************************/
+.punxy__navi {
+  font-size: 18px;
+  line-height: 2.3333333333;
+}
+
+.punxy__link {
+  &.is-active {
+    font-family: $font-monospace-bold;
+  }
+}
+
+/******************************************************************************
+ * <Masthead />
+*******************************************************************************/
+.punxy__mast {
+  font-size: 24px;
+  line-height: 1.75;
+  
+  h1 {
+    max-width: 570px;
+  }
+
+  a {
+    font-family: $font-monospace-bold;
+  }
+}
+
+/******************************************************************************
+ * <Feed>...</Feed>
+*******************************************************************************/
+.punxy__ctrl,
+.punxy__meta {
+  line-height: 3;
+}
+
+.punxy__btn {
+  appearance: none;
+  border: 0;
+  outline: 0;
+  background-color: $black;
+  color: $white;
+  font-family: $font-monospace-bold;
+  font-size: 14px;
+  line-height: 1;
+  padding: 16px;
+  cursor: pointer;
+}
+
+.punxy__list,
+.punxy__item {
+  padding: 32px 0;
+}
+
+.punxy__attr {
+  display: inline-block;
+}
+
+.punxy__title {
+  font-size: 18px;
+  line-height: 2;
+  font-family: $font-monospace-bold;
+}
+
+.punxy__load {
+  padding: 32px;
+  margin: 32px 0;
+}

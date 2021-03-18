@@ -1,0 +1,63 @@
+@import '_reset.scss';
+
+/******************************************************************************
+ * Colors
+*******************************************************************************/
+$black: #000;
+$white: #fff;
+$grey: #555;
+$grey-dark: #333;
+$grey-black: #111;
+$green: #10ff59;
+$yellow: #eefd02;
+$red: #f30541;
+$pink: #f26d7d;
+$purple: #6441a4;
+$blue: #1795d4;
+$teal: #2affea;
+
+/******************************************************************************
+ * Fonts
+*******************************************************************************/
+$font-monospace: "panicsans";
+$font-monospace-bold: "#{$font-monospace}bold";
+
+@font-face {
+    font-family: $font-monospace;
+    src: url( "../fonts/#{$font-monospace}.woff" ) format( "woff" );
+    font-style: normal;
+    font-stretch: normal;
+}
+@font-face {
+    font-family: $font-monospace-bold;
+    src: url( "../fonts/#{$font-monospace-bold}.woff" ) format( "woff" );
+    font-style: normal;
+    font-stretch: normal;
+}
+
+/******************************************************************************
+ * Global
+*******************************************************************************/
+html,
+body {
+  color: $black;
+  font-family: $font-monospace;
+  font-size: 14px;
+  line-height: 1.7142857143;
+}
+
+strong {
+  font-family: $font-monospace-bold;
+}
+
+.-ul {
+  border-bottom: 1px solid $black;
+}
+
+.-i {
+  display: inline;
+}
+
+.feather-external-link {
+  transform: translate3d(8px, 4px, 0);
+}
