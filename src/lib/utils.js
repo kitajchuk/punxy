@@ -7,7 +7,7 @@ export function formatDate(timestamp) {
 
 // Modified from this example:
 // https://medium.com/@weberzt/how-to-create-a-random-id-in-javascript-e92b39fedaef
-export function makeId(num = 12) {
+export function makeId(num = 9) {
   let id = "";
   let chars = "01";
   for (let i = 0; i < num; ++i) {
