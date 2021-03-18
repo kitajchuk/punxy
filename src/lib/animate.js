@@ -17,8 +17,10 @@ export function withAnimate(WrappedComponent) {
 
     useEffect(() => {
       if (elRef.current) {
+        // RAF utility
+        // check element bounds
+        // trigger animation & stop listening...
         scRef.current = new Controller();
-
         scRef.current.go(() => {
           if (elRef.current) {
             const bounds = elRef.current.getBoundingClientRect();

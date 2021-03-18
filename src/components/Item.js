@@ -1,6 +1,7 @@
-import ExLinkIcon from './ExLinkIcon';
 import { formatDate } from '../lib/utils';
 import { withAnimate } from '../lib/animate';
+// https://create-react-app.dev/docs/adding-images-fonts-and-files/
+import { ReactComponent as ExLinkIcon } from '../assets/external-link.svg';
 
 function Item({item}) {
   return (
@@ -9,7 +10,9 @@ function Item({item}) {
       <div className="punxy__title">
         <a href={item.url || `https://news.ycombinator.com/item?id=${item.id}`} target="_blank" rel="noreferrer">
           {item.title}
-          <ExLinkIcon />
+          <div className="-i">
+            <ExLinkIcon />
+          </div>
         </a>
       </div>
       <div className="punxy__meta">

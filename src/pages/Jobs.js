@@ -5,6 +5,7 @@ import { JobsFeed } from '../components/Feed';
 export default function Jobs() {
   useEffect(() => {
     document.body.classList.add('is-jobs');
+    document.body.classList.remove('is-wtf');
   });
 
   return (

@@ -48,6 +48,11 @@ body {
     color: $white;
     background-color: $black;
   }
+
+  &.is-wtf {
+    background-color: $teal;
+    color: $purple;
+  }
 }
 
 strong {
@@ -71,6 +76,10 @@ strong {
   .is-jobs & {
     border-bottom-color: $white;
   }
+
+  .is-wtf & {
+    border-bottom-color: $teal;
+  }
 }
 
 .-i {
@@ -79,7 +88,7 @@ strong {
   svg {
     width: 20px;
     height: 20px;
-    transform: translate3d(2px, 2px, 0);
+    transform: translate3d(10px, 2px, 0);
 
     .is-jobs & {
       fill: $white;

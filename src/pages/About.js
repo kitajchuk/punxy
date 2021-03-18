@@ -2,9 +2,15 @@ import { useEffect } from 'react';
 import Masthead from '../components/Masthead';
 import { getUser } from '../lib/api';
 
+// A little storytelling here...
+// I came up with the idea for my app on a run the other day
+// It's nothing special, but I always feel like having a story
+//    to tell really helps tie the experience together, however big or small that is
+// So I just made up some cyberpunk junk to fill in the gaps a bit and provide context :)
 export default function About() {
   useEffect(() => {
     document.body.classList.remove('is-jobs');
+    document.body.classList.add('is-wtf');
   });
 
   return (

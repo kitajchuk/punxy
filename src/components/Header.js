@@ -1,6 +1,7 @@
 import { getUser } from '../lib/api';
 import { Link } from 'react-router-dom';
-import Logo from './Logo';
+// https://create-react-app.dev/docs/adding-images-fonts-and-files/
+import { ReactComponent as Logo } from '../assets/punxy.svg';
 
 export default function Header() {
   return (

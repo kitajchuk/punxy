@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function News() {
   useEffect(() => {
-    document.body.classList.remove('is-jobs');
+    document.body.classList.remove('is-jobs', 'is-wtf');
   });
 
   return (
