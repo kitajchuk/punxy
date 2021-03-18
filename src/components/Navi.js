@@ -15,6 +15,12 @@ export default function Navi() {
             jobs
           </NavLink>
         </li>
+        <li>&nbsp;/&nbsp;</li>
+        <li>
+          <NavLink to="/about" className="punxy__link" activeClassName="is-active">
+            wtf?
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

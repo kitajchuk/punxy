@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Navi from './components/Navi';
 import News from './pages/News';
 import Jobs from './pages/Jobs';
+import About from './pages/About';
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route path="/jobs">
             <Jobs />
+          </Route>
+          <Route path="/about">
+            <About />
           </Route>
         </Switch>
       </div>
