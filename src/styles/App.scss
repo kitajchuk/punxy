@@ -78,7 +78,8 @@
  * <Feed>...</Feed>
 *******************************************************************************/
 .punxy__ctrl,
-.punxy__meta {
+.punxy__meta,
+.punxy__load {
   line-height: 3;
 }
 
@@ -106,7 +107,8 @@
   padding: 32px 0;
 }
 
-.punxy__attr {
+.punxy__attr,
+.punxy__load div {
   display: inline-block;
 }
 
@@ -114,9 +116,4 @@
   font-size: 18px;
   line-height: 2;
   font-family: $font-monospace-bold;
-}
-
-.punxy__load {
-  padding: 32px;
-  margin: 32px 0;
 }
