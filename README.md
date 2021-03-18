@@ -1,7 +1,9 @@
 punxy
 =====
 
-> your proxy to the "hacker news".
+> your proxy to what the “hackers” call “news” and the latest freelance nets.
+
+<img src="./public/punxy.png" width="100%" />
 
 # Getting Started with Create React App
 

@@ -13,7 +13,7 @@ export default function Controls({handler, active}) {
         <li>&nbsp;/&nbsp;</li>
         <li className={active === 'by' ? 'is-active' : ''} onClick={onControl}>by</li>
         <li>&nbsp;|&nbsp;</li>
-        <li>polling: no</li>
+        <li>polling: <strong>no</strong></li>
       </ul>
     </div>
   );

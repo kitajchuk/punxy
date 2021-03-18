@@ -13,7 +13,7 @@ export function makeId(num = 9) {
   for (let i = 0; i < num; ++i) {
     id += chars.charAt(Math.floor(Math.random() * chars.length));
   }
-  return `user${id}`;
+  return `punk${id}`;
 }
 
 export function sortLoHi(key, items) {

@@ -15,7 +15,7 @@ function Feed({data, endpoint}) {
 
   // Playful, randomized button texts...
   const [text, setText] = useState(randoText());
-  const [loadText, setLoadText] = useState('Intercepting global hacker networks...');
+  const [loadText, setLoadText] = useState('intercepting global hacker networks...');
 
   // List items to be manipulated (sort, add, etc...)
   const [items, setItems] = useState(data);
@@ -30,7 +30,7 @@ function Feed({data, endpoint}) {
     if (data && !items) {
       // Playful and contextual delay on feed render
       setTimeout(() => {
-        setLoadText('Aggregating the latest cyber nets...');
+        setLoadText('aggregating the latest cyber nets...');
       }, 1000);
       setTimeout(() => {
         setItems(data);
@@ -54,14 +54,14 @@ function Feed({data, endpoint}) {
     loadingRef.current = true;
     offsetRef.current += api.perPage;
 
-    setText('Fetching more bytes...');
+    setText('fetching more bytes...');
 
     api.getItems(endpoint, offsetRef.current).then((json) => {
       // End of line, bub
       if (!json.length) {
         // This will disable the button handler
         loadingRef.current = true;
-        setText('The cyber waves have crashed...');
+        setText('the cyber waves have crashed...');
 
       } else {
         // Another async hack!
