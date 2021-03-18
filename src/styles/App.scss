@@ -130,6 +130,10 @@
 
 .punxy__wtf {
   padding: 32px;
+
+  p + p {
+    margin-top: 64px;
+  }
 }
 
 .punxy__list,

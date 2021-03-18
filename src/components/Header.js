@@ -1,4 +1,4 @@
-import { makeId } from '../lib/utils';
+import { getUser } from '../lib/api';
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
 
@@ -10,7 +10,7 @@ export default function Header() {
       </Link>
       <div className="punxy__user">
         {/* you are always anonymous! */}
-        howdy, <strong>{makeId()}</strong>
+        howdy, <strong>{getUser()}</strong>
       </div>
     </header>
   );

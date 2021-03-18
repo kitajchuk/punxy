@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { makeId } from './utils';
 
 const store = {
   items: {},
@@ -46,6 +47,14 @@ const api = {
     }
   }
 };
+
+export function getUser() {
+  if (!store.user) {
+    store.user = makeId();
+  }
+
+  return store.user;
+}
 
 // HOCs
 // https://reactjs.org/docs/higher-order-components.html
