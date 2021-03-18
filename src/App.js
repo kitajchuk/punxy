@@ -8,7 +8,7 @@ import {
   NavLink,
 } from 'react-router-dom';
 import { makeId, formatDate } from './lib/utils';
-import { withStories, withJobs, withItem } from './lib/api';
+import { withStories, withJobs } from './lib/api';
 
 function Logo() {
   const html = {
@@ -134,36 +134,30 @@ function Loading() {
   );
 }
 
-function Item({id, data}) {
+function Item({item}) {
   return (
     <li className="punxy__item">
-      <div className="punxy__meta">{data ? formatDate(data.time) : 'loading'}</div>
+      <div className="punxy__meta">{formatDate(item.time)}</div>
       <div className="punxy__title">
-        <a href={data ? data.url : '#'} target="_blank" rel="noreferrer">
-          {data ? data.title : 'loading'}
+        <a href={item.url} target="_blank" rel="noreferrer">
+          {item.title}
           <ExLinkIcon />
         </a>
       </div>
       <div className="punxy__meta">
         <span className="punxy__attr -ul">
-          {data ? (
-            <>by: <strong>@{data.by}</strong> / score: <strong>{data.score}</strong></>
-          ) : 
-          'loading'
-          }
+          by: <strong>@{item.by}</strong> / score: <strong>{item.score}</strong>
         </span>
       </div>
     </li>
   );
 }
 
-const LiveItem = withItem(Item);
-
 function List({items}) {
   return (
     <ul className="punxy__list">
-      {items.map((id) => {
-        return <LiveItem key={id} id={id} />
+      {items.map((item) => {
+        return <Item key={item.id} item={item} />
       })}
     </ul>
   );

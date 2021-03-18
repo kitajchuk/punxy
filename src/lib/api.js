@@ -1,17 +1,47 @@
 import { useEffect, useState } from 'react';
 
+const store = {
+  items: {},
+};
+
 const api = {
   getItems(endpoint, amount = 25) {
-    return fetch(`https://hacker-news.firebaseio.com/v0/${endpoint}.json`)
-      .then((res) => res.json())
-      .then((json) => {
-        return json.slice(0, amount);
+    if (store[endpoint]) {
+      const items = store[endpoint].slice(0, amount).map((id) => {
+        return api.getItem(id);
       });
+
+      return Promise.all(items);
+
+    } else {
+      return fetch(`https://hacker-news.firebaseio.com/v0/${endpoint}.json`)
+        .then((res) => res.json())
+        .then((json) => {
+          store[endpoint] = json;
+
+          const items = json.slice(0, amount).map((id) => {
+            return api.getItem(id);
+          });
+
+          return Promise.all(items);
+        });
+    }
   },
 
   getItem(id) {
-    return fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-      .then((res) => res.json());
+    if (store.items[id]) {
+      return new Promise((resolve) => {
+        resolve(store.items[id]);
+      });
+
+    } else {
+      return fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+        .then((res) => res.json())
+        .then((json) => {
+          store.items[id] = json;
+          return json;
+        });
+    }
   }
 };
 
@@ -22,9 +52,12 @@ export function withStories(WrappedComponent) {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-      api.getItems('newstories').then((result) => {
+      async function fetchData() {
+        const result = await api.getItems('newstories');
         setData(result);
-      });
+      }
+
+      fetchData();
     }, []);
 
     return <WrappedComponent data={data} {...props} />;
@@ -36,23 +69,12 @@ export function withJobs(WrappedComponent) {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-      api.getItems('jobstories').then((result) => {
+      async function fetchData() {
+        const result = await api.getItems('jobstories');
         setData(result);
-      });
-    }, []);
+      }
 
-    return <WrappedComponent data={data} {...props} />;
-  };
-}
-
-export function withItem(WrappedComponent) {
-  return ({...props}) => {
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-      api.getItem(props.id).then((result) => {
-        setData(result);
-      });
+      fetchData();
     }, []);
 
     return <WrappedComponent data={data} {...props} />;
