@@ -1,7 +1,7 @@
-export default function Loading() {
+export default function Loading(props) {
   return (
     <div className="punxy__load">
-      <div className="-ul">Intercepting global hacker networks...</div>
+      <div className="-ul">{props.children}</div>
     </div>
   );
 }

@@ -15,6 +15,7 @@ function Feed({data, endpoint}) {
 
   // Playful, randomized button texts...
   const [text, setText] = useState(randoText());
+  const [loadText, setLoadText] = useState('Intercepting global hacker networks...');
 
   // List items to be manipulated (sort, add, etc...)
   const [items, setItems] = useState(data);
@@ -27,8 +28,13 @@ function Feed({data, endpoint}) {
 
   useEffect(() => {
     if (data && !items) {
-      setItems(data);
-      console.log('data set items');
+      // Playful and contextual delay on feed render
+      setTimeout(() => {
+        setLoadText('Aggregating the latest cyber nets...');
+      }, 1000);
+      setTimeout(() => {
+        setItems(data);
+      }, 2000);
     }
   }, [data, items]);
 
@@ -55,15 +61,21 @@ function Feed({data, endpoint}) {
       if (!json.length) {
         // This will disable the button handler
         loadingRef.current = true;
-        setText('Our probes show no more signs of life out there...');
+        setText('The cyber waves have crashed...');
 
       } else {
-        setItems((currItems) => {
-          const newItems = currItems.concat(json);
-          loadingRef.current = false;
-          setText(randoText());
-          return newItems;
-        });
+        // Another async hack!
+        // For this app I really want enough time to read the texts...
+        // Even if the API response is quick, or we're loading from store,
+        //    we want the experience to "feel" like there's some loading/waiting
+        setTimeout(() => {
+          setItems((currItems) => {
+            const newItems = currItems.concat(json);
+            loadingRef.current = false;
+            setText(randoText());
+            return newItems;
+          });
+        }, 1000);
       }
     });
   };
@@ -77,7 +89,7 @@ function Feed({data, endpoint}) {
           <Button handler={onButton}>{text}</Button>
         </>
       ) : (
-        <Loading />
+        <Loading>{loadText}</Loading>
       )}
     </div>
   );
