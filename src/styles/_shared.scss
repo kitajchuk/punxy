@@ -38,12 +38,16 @@ $font-monospace-bold: "#{$font-monospace}bold";
 /******************************************************************************
  * Global
 *******************************************************************************/
-html,
 body {
   color: $black;
   font-family: $font-monospace;
   font-size: 14px;
   line-height: 1.7142857143;
+
+  &.is-jobs {
+    color: $white;
+    background-color: $black;
+  }
 }
 
 strong {
@@ -52,12 +56,22 @@ strong {
 
 .-ul {
   border-bottom: 1px solid $black;
+
+  .is-jobs & {
+    border-bottom-color: $white;
+  }
 }
 
 .-i {
   display: inline;
-}
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    transform: translate3d(2px, 2px, 0);
 
-.feather-external-link {
-  transform: translate3d(8px, 4px, 0);
+    .is-jobs & {
+      fill: $white;
+    }
+  }
 }
