@@ -10,6 +10,19 @@
 .punxy__feed,
 .punxy__header {
   padding: 32px;
+
+  @media (max-width: 768px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+.punxy__navi,
+.punxy__mast {
+  @media (max-width: 768px) {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
 }
 
 .punxy__navi,
@@ -36,6 +49,10 @@
   svg {
     height: 32px;
     width: auto;
+
+    @media (max-width: 768px) {
+      height: 24px;
+    }
 
     .is-jobs & {
       fill: $white;
@@ -90,8 +107,14 @@
 .punxy__ctrl {
   background-color: rgba(255, 255, 255, 0.9);
   position: sticky;
+  padding: 32px 0;
   top: 0;
   z-index: 1;
+
+  @media (max-width: 768px) {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
 
   .is-jobs & {
     background-color: rgba(0, 0, 0, 0.9);
@@ -127,13 +150,17 @@
 
 .punxy__list,
 .punxy__item,
-.punxy__ctrl,
 .punxy__load {
   padding: 32px 0;
 }
 
 .punxy__wtf {
   padding: 32px;
+
+  @media (max-width: 768px) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 
   p + p {
     margin-top: 64px;
