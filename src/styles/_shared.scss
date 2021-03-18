@@ -54,6 +54,17 @@ strong {
   font-family: $font-monospace-bold;
 }
 
+.anim {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  transition: opacity 400ms ease-out, transform 400ms ease-out;
+
+  &.is-animated {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .-ul {
   border-bottom: 1px solid $black;
 

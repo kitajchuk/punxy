@@ -1,7 +1,8 @@
 import ExLinkIcon from './ExLinkIcon';
 import { formatDate } from '../lib/utils';
+import { withAnimate } from '../lib/animate';
 
-export default function Item({item}) {
+function Item({item}) {
   return (
     <li className="punxy__item">
       <div className="punxy__meta">{formatDate(item.time)}</div>
@@ -19,3 +20,5 @@ export default function Item({item}) {
     </li>
   );
 }
+
+export default withAnimate(Item);
