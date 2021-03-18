@@ -5,9 +5,11 @@ const store = {
 };
 
 const api = {
-  getItems(endpoint, amount = 25) {
+  perPage: 25,
+
+  getItems(endpoint, offset = 0, amount = api.perPage) {
     if (store[endpoint]) {
-      const items = store[endpoint].slice(0, amount).map((id) => {
+      const items = store[endpoint].slice(offset, offset + amount).map((id) => {
         return api.getItem(id);
       });
 
@@ -19,7 +21,7 @@ const api = {
         .then((json) => {
           store[endpoint] = json;
 
-          const items = json.slice(0, amount).map((id) => {
+          const items = json.slice(offset, offset + amount).map((id) => {
             return api.getItem(id);
           });
 
@@ -47,37 +49,20 @@ const api = {
 
 // HOCs
 // https://reactjs.org/docs/higher-order-components.html
-export function withStories(WrappedComponent) {
+export function withHackers(endpoint, WrappedComponent) {
   return ({...props}) => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
       async function fetchData() {
-        const result = await api.getItems('newstories');
+        const result = await api.getItems(endpoint);
         setData(result);
       }
 
       fetchData();
     }, []);
 
-    return <WrappedComponent data={data} {...props} />;
-  };
-}
-
-export function withJobs(WrappedComponent) {
-  return ({...props}) => {
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-      async function fetchData() {
-        const result = await api.getItems('jobstories');
-        setData(result);
-      }
-
-      fetchData();
-    }, []);
-
-    return <WrappedComponent data={data} {...props} />;
+    return <WrappedComponent data={data} endpoint={endpoint} {...props} />;
   };
 }
 

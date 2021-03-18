@@ -6,7 +6,7 @@ export default function Item({item}) {
     <li className="punxy__item">
       <div className="punxy__meta">{formatDate(item.time)}</div>
       <div className="punxy__title">
-        <a href={item.url} target="_blank" rel="noreferrer">
+        <a href={item.url || `https://news.ycombinator.com/item?id=${item.id}`} target="_blank" rel="noreferrer">
           {item.title}
           <ExLinkIcon />
         </a>

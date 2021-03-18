@@ -83,6 +83,16 @@
   line-height: 3;
 }
 
+.punxy__ctrl {
+  li {
+    cursor: pointer;
+  }
+
+  li.is-active {
+    font-family: $font-monospace-bold;
+  }
+}
+
 .punxy__btn {
   appearance: none;
   border: 0;
