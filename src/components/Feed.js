@@ -21,6 +21,8 @@ function Feed({data, endpoint}) {
 
   // Default offset is ZERO and will increment by api.perPage
   const offsetRef = useRef(0);
+
+  // Track when we're loading more datas...
   const loadingRef = useRef(false);
 
   useEffect(() => {
