@@ -165,6 +165,7 @@
 .punxy__seed {
   background-color: transparent;
   cursor: pointer;
+  color: $purple;
 
   .is-jobs & {
     color: $green;
@@ -206,6 +207,8 @@
   }
 
   div:last-child button {
+    background-color: $purple;
+
     .is-jobs & {
       background-color: $green;
     }
