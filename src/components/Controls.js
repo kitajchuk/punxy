@@ -4,7 +4,7 @@ export default function Controls({ ctrlHandler, seedHandler, active}) {
     ctrlHandler(e.target.innerText);
   };
 
-  // Proxy handler to "bubble" up which control?
+  // Proxy handler to "bubble" up our desire to contribute?
   const onSeed = (e) => {
     seedHandler(e.target.innerText);
   };
