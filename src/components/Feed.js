@@ -108,7 +108,7 @@ function Feed({data, endpoint}) {
         //    and make sure we can still `seed` for more...
         loadingRef.current = false;
         endoflineRef.current = true;
-        setText('the cyber wave has crashed...');
+        setText('end of line. try seedding...');
 
       } else {
         // Another async hack!
