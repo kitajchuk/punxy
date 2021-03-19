@@ -1,9 +1,13 @@
 import { format } from 'date-fns';
 
+// This makes current time "since" 2049 to go along with our story...
+// This UNIX timestamp represents "Fri Jan 01 2049 08:00:00 GMT+0000"
+const _unix2049 = 2493100800;
+
 // Simple date formatting to match my design spec
 // Multiply by 1000 since HN is UNIX time for stamps...
 export function formatDate(timestamp) {
-  const date = new Date(timestamp * 1000);
+  const date = new Date((timestamp + _unix2049) * 1000);
   return format(date, 'MM.dd.yyyy kk.mm.ss');
 }
 
