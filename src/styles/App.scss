@@ -2,6 +2,7 @@
 
 $max-width: 1024px;
 $min-width: 768px;
+$mob-width: 480px;
 
 .punxy {
   max-width: $max-width;
@@ -88,6 +89,10 @@ $min-width: 768px;
 .punxy__mast {
   font-size: 24px;
   line-height: 1.75;
+
+  @media (max-width: $mob-width) {
+    font-size: 21px;
+  }
   
   h1 {
     max-width: 570px;
@@ -179,9 +184,16 @@ $min-width: 768px;
 }
 
 .punxy__list,
-.punxy__item,
 .punxy__load {
   padding: 32px 0;
+}
+
+.punxy__item {
+  padding: 32px 0;
+
+  @media (max-width: $mob-width) {
+    padding: 16px 0;
+  }
 }
 
 .punxy__wtf {
@@ -212,6 +224,10 @@ $min-width: 768px;
   line-height: 2;
   font-family: $font-monospace-bold;
   text-transform: lowercase;
+
+  @media (max-width: $mob-width) {
+    font-size: 16px;
+  }
 }
 
 .punxy__modal {
