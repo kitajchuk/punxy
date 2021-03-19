@@ -21,8 +21,9 @@ const api = {
 
   // Since fetching collections like `newstories` returns an array of IDs we need to do work...
   // This method makes sure the data flowing into the app has actual items, not just IDs
-  getItems(endpoint, offset = 0, amount = api.perPage) {
-    if (store[endpoint]) {
+  // Adding "force" argument to streamline methods like `seed`
+  getItems(endpoint, offset = 0, amount = api.perPage, force = false) {
+    if (store[endpoint] && !force) {
       const items = store[endpoint].slice(offset, offset + amount).map((id) => {
         return api.getItem(id);
       });
@@ -59,6 +60,33 @@ const api = {
           store.items[id] = json;
           return json;
         });
+    }
+  },
+
+  // The `seed` method
+  // There's some fake story to it in the app,
+  //    but really it just fetches new data for an endpoint,
+  //    updating the store.
+  seed(endpoint) {
+    const json = api.getItems(endpoint, 0, api.perPage, true);
+
+    api.prune(endpoint);
+
+    return json;
+  },
+
+  // The `prune` method
+  // Once the store endpoint has been seeded,
+  //    items need to be pruned for any possible "dead" IDs.
+  // Since items is just a flat object hash, this is a flat prune,
+  //    endpoint is necessary here as the comparison array.
+  prune(endpoint) {
+    for (let itemId in store.items) {
+      const query = store[endpoint].find((storedId) => storedId === itemId);
+
+      if (!query) {
+        delete store.items[itemId];
+      }
     }
   }
 };

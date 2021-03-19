@@ -5,6 +5,23 @@ import Controls from './Controls';
 import Button from './Button';
 import Loading from './Loading';
 import List from './List';
+import Masthead from './Masthead';
+
+function Modal({abortHandler, confirmHandler}) {
+  return (
+    <div className="punxy__modal">
+      <div className="punxy__modal__wrap">
+        <Masthead>
+          <h1><strong>know what you're doing</strong>. seeding disperses your current transactions out to all your peers. likewise, your local store will be replenished with your peers' seeds. fight the power.</h1>
+        </Masthead>
+        <div className="punxy__btns">
+          <Button handler={abortHandler}>nevermind</Button>
+          <Button handler={confirmHandler}>lets do it!</Button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function Feed({data, endpoint}) {
   // Default active control is `time`
@@ -20,6 +37,9 @@ function Feed({data, endpoint}) {
   // List items to be manipulated (sort, add, etc...)
   const [items, setItems] = useState(data);
 
+  // Track when we're seeding the datas...
+  const [seeding, setSeeding] = useState(false);
+
   // Default offset is ZERO and will increment by api.perPage
   const offsetRef = useRef(0);
 
@@ -27,10 +47,10 @@ function Feed({data, endpoint}) {
   const loadingRef = useRef(false);
 
   useEffect(() => {
-    if (data && !items) {
+    if (data && !items && !loadingRef.current) {
       // Playful and contextual delay on feed render
       setTimeout(() => {
-        setLoadText('aggregating the latest cyber nets...');
+        setLoadText('streaming the latest transactions...');
       }, 1000);
       setTimeout(() => {
         setItems(data);
@@ -46,6 +66,44 @@ function Feed({data, endpoint}) {
     setSort(ctrl === 'by' ? 'lo-hi' : 'hi-lo');
   };
 
+  const onSeed = (seed) => {
+    if (loadingRef.current) {
+      return;
+    }
+
+    loadingRef.current = true;
+
+    setSeeding(true);
+  };
+
+  const onAbort = () => {
+    setSeeding(() => {
+      loadingRef.current = false;
+      return false;
+    });
+    
+  };
+
+  const onConfirm = () => {
+    setLoadText('seeding peer transactions...');
+    setSeeding(false);
+    setItems(null);
+
+    api.seed(endpoint).then((json) => {
+      // More async hack! for the theatrical nature of things...
+      setTimeout(() => {
+        setLoadText('receiving transactions from peers...');
+      }, 1000);
+      setTimeout(() => {
+        setItems(() => {
+          offsetRef.current = 0;
+          loadingRef.current = false;
+          return json;
+        });
+      }, 3000);
+    });
+  };
+
   const onButton = () => {
     if (loadingRef.current) {
       return;
@@ -54,14 +112,14 @@ function Feed({data, endpoint}) {
     loadingRef.current = true;
     offsetRef.current += api.perPage;
 
-    setText('fetching more bytes...');
+    setText('crunching more bytes...');
 
     api.getItems(endpoint, offsetRef.current).then((json) => {
       // End of line, bub
       if (!json.length) {
         // This will disable the button handler
         loadingRef.current = true;
-        setText('the cyber waves have crashed...');
+        setText('the cyber wave has crashed...');
 
       } else {
         // Another async hack!
@@ -84,13 +142,14 @@ function Feed({data, endpoint}) {
     <div className="punxy__feed">
       {items ? (
         <>
-          <Controls active={ctrl} handler={onControl} />
+          <Controls active={ctrl} ctrlHandler={onControl} seedHandler={onSeed} />
           <List items={items} ctrl={ctrl} sort={sort} />
           <Button handler={onButton}>{text}</Button>
         </>
       ) : (
         <Loading>{loadText}</Loading>
       )}
+      {seeding && <Modal abortHandler={onAbort} confirmHandler={onConfirm} />}
     </div>
   );
 }

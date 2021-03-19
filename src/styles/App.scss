@@ -1,7 +1,10 @@
 @import '_shared.scss';
 
+$max-width: 1024px;
+$min-width: 768px;
+
 .punxy {
-  max-width: 1024px;
+  max-width: $max-width;
   margin: 0 auto;
 }
 
@@ -11,7 +14,7 @@
 .punxy__header {
   padding: 32px;
 
-  @media (max-width: 768px) {
+  @media (max-width: $min-width) {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -19,7 +22,7 @@
 
 .punxy__navi,
 .punxy__mast {
-  @media (max-width: 768px) {
+  @media (max-width: $min-width) {
     padding-top: 16px;
     padding-bottom: 16px;
   }
@@ -50,7 +53,7 @@
     height: 32px;
     width: auto;
 
-    @media (max-width: 768px) {
+    @media (max-width: $min-width) {
       height: 24px;
     }
 
@@ -111,13 +114,17 @@
   top: 0;
   z-index: 1;
 
-  @media (max-width: 768px) {
+  @media (max-width: $min-width) {
     padding-top: 16px;
     padding-bottom: 16px;
   }
 
   .is-jobs & {
     background-color: rgba(0, 0, 0, 0.9);
+  }
+
+  ul {
+    display: flex;
   }
 
   li {
@@ -127,17 +134,26 @@
   li.is-active {
     font-family: $font-monospace-bold;
   }
+
+  // Anchors `Seed` UI to the right of Controls
+  li:last-child {
+    margin-left: auto;
+  }
+}
+
+.punxy__seed {
+  background-color: transparent;
+  cursor: pointer;
+
+  .is-jobs & {
+    color: $green;
+  }
 }
 
 .punxy__btn {
-  appearance: none;
-  border: 0;
-  outline: 0;
   background-color: $black;
   color: $white;
   font-family: $font-monospace-bold;
-  font-size: 14px;
-  line-height: 1;
   padding: 16px;
   cursor: pointer;
   margin-bottom: 32px;
@@ -145,6 +161,20 @@
   .is-jobs & {
     background-color: $white;
     color: $black;
+  }
+}
+
+.punxy__btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    margin: 0 16px;
+  }
+
+  button {
+    margin-bottom: 0;
   }
 }
 
@@ -157,7 +187,7 @@
 .punxy__wtf {
   padding: 32px;
 
-  @media (max-width: 768px) {
+  @media (max-width: $min-width) {
     padding-left: 16px;
     padding-right: 16px;
   }
@@ -181,4 +211,38 @@
   font-size: 18px;
   line-height: 2;
   font-family: $font-monospace-bold;
+}
+
+.punxy__modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 111001001;
+
+  .is-jobs & {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: $white;
+  }
+
+  .punxy__mast {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .punxy__modal__wrap {
+    max-width: $max-width;
+    padding: 32px;
+    background-color: $white;
+    text-align: center;
+
+    .is-jobs & {
+      background-color: $black;
+    }
+  }
 }
