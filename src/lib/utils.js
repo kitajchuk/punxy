@@ -56,7 +56,7 @@ export function sortHiLo(key, items) {
 // I wanted to have an array of phrases for the load more button on the feed
 // You could really go to town with this
 // An enhancement would be to ensure the same value is never returned twice in a row!
-const texts = [
+const _texts = [
   'more, i must see more!',
   'you gotta be kidding me...',
   'hit me again',
@@ -67,7 +67,25 @@ const texts = [
   'mmk, i guess so',
 ];
 
+// The private random text indexer...
+function _randoText() {
+  return _texts[Math.floor(Math.random() * _texts.length)];
+}
+
+// A scoped global "last text" value concept...
+let _text = _randoText();
+
 // Gets that rando text string...
+// Ensures it's different than the last one.
 export function randoText() {
-  return texts[Math.floor(Math.random() * texts.length)];
+  let text = _randoText();
+
+  while (text === _text) {
+    text = text = _randoText();
+  }
+
+  // Store new value as "last text" value
+  _text = text;
+
+  return text;
 }
