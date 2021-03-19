@@ -7,7 +7,7 @@ import Loading from './Loading';
 import List from './List';
 import Modal from './Modal';
 
-function Feed({data, endpoint}) {
+function Feed({ data, endpoint, loading1 = 'intercepting global hacker networks..', loading2 = 'streaming the latest transactions...'}) {
   // Default active control is `time`
   const [ctrl, setCtrl] = useState('time');
 
@@ -16,7 +16,7 @@ function Feed({data, endpoint}) {
 
   // Playful, randomized button texts...
   const [text, setText] = useState(randoText());
-  const [loadText, setLoadText] = useState('intercepting global hacker networks...');
+  const [loadText, setLoadText] = useState(loading1);
 
   // List items to be manipulated (sort, add, etc...)
   const [items, setItems] = useState(data);
@@ -35,13 +35,13 @@ function Feed({data, endpoint}) {
     if (data && !items && !loadingRef.current) {
       // Playful and contextual delay on feed render
       setTimeout(() => {
-        setLoadText('streaming the latest transactions...');
+        setLoadText(loading2);
       }, 1000);
       setTimeout(() => {
         setItems(data);
       }, 2000);
     }
-  }, [data, items]);
+  }, [data, items, loading2]);
 
   const onControl = (ctrl) => {
     setCtrl(ctrl);
