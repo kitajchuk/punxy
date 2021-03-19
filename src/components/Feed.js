@@ -83,6 +83,8 @@ function Feed({data, endpoint}) {
         setItems(() => {
           offsetRef.current = 0;
           loadingRef.current = false;
+          endoflineRef.current = false;
+          setText(randoText());
           return json;
         });
       }, 3000);
