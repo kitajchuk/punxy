@@ -3,6 +3,8 @@ punxy
 
 > your proxy to what the “hackers” call “news” and the latest freelance nets.
 
+[punxy.vercel.app](https://punxy.vercel.app/)
+
 <img src="./public/punxy.png" width="100%" />
 
 # Getting Started with Create React App
