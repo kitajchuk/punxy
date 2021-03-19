@@ -171,15 +171,28 @@ $mob-width: 480px;
 
 .punxy__btns {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 0 -16px;
+
+  @media (max-width: $min-width) {
+    margin: 0 -8px;
+  }
 
   div {
     margin: 0 16px;
+
+    @media (max-width: $min-width) {
+       margin: 0 8px;
+    }
   }
 
   button {
     margin-bottom: 0;
+  }
+
+  div:last-child button {
+    .is-jobs & {
+      background-color: $green;
+    }
   }
 }
 
@@ -256,7 +269,10 @@ $mob-width: 480px;
     max-width: $max-width;
     padding: 32px;
     background-color: $white;
-    text-align: center;
+
+    @media (max-width: $min-width) {
+      padding: 16px;
+    }
 
     .is-jobs & {
       background-color: $black;
