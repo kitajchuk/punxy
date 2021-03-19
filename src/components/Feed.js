@@ -29,6 +29,7 @@ function Feed({data, endpoint}) {
 
   // Track when we're loading more datas...
   const loadingRef = useRef(false);
+  const endoflineRef = useRef(false);
 
   useEffect(() => {
     if (data && !items && !loadingRef.current) {
@@ -89,7 +90,7 @@ function Feed({data, endpoint}) {
   };
 
   const onButton = () => {
-    if (loadingRef.current) {
+    if (loadingRef.current || endoflineRef.current) {
       return;
     }
 
@@ -102,7 +103,9 @@ function Feed({data, endpoint}) {
       // End of line, bub
       if (!json.length) {
         // This will disable the button handler
-        loadingRef.current = true;
+        //    and make sure we can still `seed` for more...
+        loadingRef.current = false;
+        endoflineRef.current = true;
         setText('the cyber wave has crashed...');
 
       } else {
