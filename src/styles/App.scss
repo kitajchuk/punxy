@@ -1,9 +1,5 @@
 @import '_shared.scss';
 
-$max-width: 1024px;
-$min-width: 768px;
-$mob-width: 480px;
-
 .punxy {
   max-width: $max-width;
   margin: 0 auto;
@@ -75,6 +71,10 @@ $mob-width: 480px;
   font-size: 18px;
   line-height: 2.3333333333;
   margin-top: 32px;
+
+  @media (max-width: $mob-width) {
+    font-size: 16px;
+  }
 }
 
 .punxy__link {
@@ -100,6 +100,22 @@ $mob-width: 480px;
 
   a {
     font-family: $font-monospace-bold;
+  }
+}
+
+/******************************************************************************
+ * <About />
+*******************************************************************************/
+.punxy__wtf {
+  padding: 32px;
+
+  @media (max-width: $min-width) {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  p + p {
+    margin-top: 64px;
   }
 }
 
@@ -209,19 +225,6 @@ $mob-width: 480px;
   }
 }
 
-.punxy__wtf {
-  padding: 32px;
-
-  @media (max-width: $min-width) {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  p + p {
-    margin-top: 64px;
-  }
-}
-
 .punxy__list,
 .punxy__feed {
   padding-top: 0;
@@ -243,6 +246,9 @@ $mob-width: 480px;
   }
 }
 
+/******************************************************************************
+ * <Modal />
+*******************************************************************************/
 .punxy__modal {
   position: fixed;
   left: 0;

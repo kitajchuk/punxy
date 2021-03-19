@@ -11,7 +11,7 @@ export function withAnimate(WrappedComponent) {
     const scRef = useRef();
     const [animated, setAnimated] = useState(false);
     const classes = {
-      'anim': true,
+      '-anim': true,
       'is-animated': animated,
     };
 

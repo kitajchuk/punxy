@@ -1,6 +1,13 @@
 @import '_reset.scss';
 
 /******************************************************************************
+ * Sizes
+*******************************************************************************/
+$max-width: 1024px;
+$min-width: 768px;
+$mob-width: 480px;
+
+/******************************************************************************
  * Colors
 *******************************************************************************/
 $black: #000;
@@ -59,7 +66,7 @@ strong {
   font-family: $font-monospace-bold;
 }
 
-.anim {
+.-anim {
   opacity: 0;
   transform: translate3d(0, 32px, 0);
   transition: opacity 400ms ease-out, transform 400ms ease-out;
@@ -90,6 +97,11 @@ strong {
     height: 20px;
     transform: translate3d(10px, 2px, 0);
 
+    @media (max-width: $mob-width) {
+      width: 16px;
+      height: 16px;
+    }
+
     .is-jobs & {
       fill: $white;
     }
@@ -102,4 +114,8 @@ strong {
   outline: 0;
   font-size: 14px;
   line-height: 1;
+
+  @media (max-width: $mob-width) {
+    font-size: 12px;
+  }
 }
