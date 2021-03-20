@@ -19,14 +19,18 @@ const api = {
   // Jobs up to 200 but expectedly we see much less than that...
   perPage: 25,
 
+  _mapItems(items, offset, amount) {
+    return items.slice(offset, offset + amount).map((id) => {
+      return api.getItem(id);
+    });
+  },
+
   // Since fetching collections like `newstories` returns an array of IDs we need to do work...
   // This method makes sure the data flowing into the app has actual items, not just IDs
   // Adding "force" argument to streamline methods like `seed`
   getItems(endpoint, offset = 0, amount = api.perPage, force = false) {
     if (store[endpoint] && !force) {
-      const items = store[endpoint].slice(offset, offset + amount).map((id) => {
-        return api.getItem(id);
-      });
+      const items = api._mapItems(store[endpoint], offset, amount);
 
       return Promise.all(items);
 
@@ -36,9 +40,7 @@ const api = {
         .then((json) => {
           store[endpoint] = json;
 
-          const items = json.slice(offset, offset + amount).map((id) => {
-            return api.getItem(id);
-          });
+          const items = api._mapItems(json, offset, amount);
 
           return Promise.all(items);
         });

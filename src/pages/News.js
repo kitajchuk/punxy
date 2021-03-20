@@ -13,8 +13,7 @@ export default function News() {
       <Masthead>
         <h1>your proxy to what the “hackers” call “news” and the latest <Link to="/jobs">freelance nets</Link>.</h1>
       </Masthead>
-      {/* uses the default loading texts */}
-      <NewsFeed />
+      <NewsFeed loading1='intercepting global hacker networks..' loading2='streaming the latest transactions...' />
     </>
   );
 }

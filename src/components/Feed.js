@@ -7,7 +7,7 @@ import Loading from './Loading';
 import List from './List';
 import Modal from './Modal';
 
-function Feed({ data, endpoint, loading1 = 'intercepting global hacker networks..', loading2 = 'streaming the latest transactions...'}) {
+function Feed({data, endpoint, loading1, loading2}) {
   // Default active control is `time`
   const [ctrl, setCtrl] = useState('time');
 
@@ -15,7 +15,7 @@ function Feed({ data, endpoint, loading1 = 'intercepting global hacker networks.
   const [sort, setSort] = useState('hi-lo');
 
   // Playful, randomized button texts...
-  const [text, setText] = useState(randoText());
+  const [buttonText, setButtonText] = useState(randoText());
   const [loadText, setLoadText] = useState(loading1);
 
   // List items to be manipulated (sort, add, etc...)
@@ -84,7 +84,7 @@ function Feed({ data, endpoint, loading1 = 'intercepting global hacker networks.
           offsetRef.current = 0;
           loadingRef.current = false;
           endoflineRef.current = false;
-          setText(randoText());
+          setButtonText(randoText(buttonText));
           return json;
         });
       }, 3000);
@@ -99,7 +99,7 @@ function Feed({ data, endpoint, loading1 = 'intercepting global hacker networks.
     loadingRef.current = true;
     offsetRef.current += api.perPage;
 
-    setText('crunching more bytes...');
+    setButtonText('crunching more bytes...');
 
     api.getItems(endpoint, offsetRef.current).then((json) => {
       // End of line, bub
@@ -108,7 +108,7 @@ function Feed({ data, endpoint, loading1 = 'intercepting global hacker networks.
         //    and make sure we can still `seed` for more...
         loadingRef.current = false;
         endoflineRef.current = true;
-        setText('end of line. try seedding...');
+        setButtonText('end of line. try seedding...');
 
       } else {
         // Another async hack!
@@ -119,7 +119,7 @@ function Feed({ data, endpoint, loading1 = 'intercepting global hacker networks.
           setItems((currItems) => {
             const newItems = currItems.concat(json);
             loadingRef.current = false;
-            setText(randoText());
+            setButtonText(randoText(buttonText));
             return newItems;
           });
         }, 1000);
@@ -133,7 +133,7 @@ function Feed({ data, endpoint, loading1 = 'intercepting global hacker networks.
         <>
           <Controls active={ctrl} ctrlHandler={onControl} seedHandler={onSeed} />
           <List items={items} ctrl={ctrl} sort={sort} />
-          <Button handler={onButton}>{text}</Button>
+          <Button handler={onButton}>{buttonText}</Button>
         </>
       ) : (
         <Loading>{loadText}</Loading>

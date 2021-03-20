@@ -77,20 +77,14 @@ function _randoText() {
   return _texts[Math.floor(Math.random() * _texts.length)];
 }
 
-// A scoped global "last text" value concept...
-let _text = _randoText();
-
 // Gets that rando text string...
-// Ensures it's different than the last one.
-export function randoText() {
+// Ensures it's different than the last one if passed a last value.
+export function randoText(txt = '') {
   let text = _randoText();
 
-  while (text === _text) {
-    text = text = _randoText();
+  while (text === txt) {
+    text = _randoText();
   }
-
-  // Store new value as "last text" value
-  _text = text;
 
   return text;
 }
