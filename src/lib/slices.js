@@ -10,7 +10,7 @@ import api from './api';
 */
 export const loadItems = createAsyncThunk('punxy/loadItems', async (args, thunkAPI) => {
   const { endpoint } = args;
-  const offset = thunkAPI.getState().punxy.items[endpoint].length;
+  const offset = thunkAPI.getState().punxy[endpoint].length;
   const data = await api.getItems(endpoint, offset);
   return {
     data,
@@ -37,10 +37,8 @@ const errorReducer = (state, action) => {
 export const punxySlice = createSlice({
   name: 'punxy',
   initialState: {
-    items: {
-      newstories: [],
-      jobstories: [],
-    },
+    newstories: [],
+    jobstories: [],
     status: 'idle',
     error: null,
     user: makeId(),
@@ -57,7 +55,7 @@ export const punxySlice = createSlice({
 
       } else {
         state.status = 'succeeded';
-        state.items[action.payload.endpoint] = state.items[action.payload.endpoint].concat(action.payload.data);
+        state[action.payload.endpoint] = state[action.payload.endpoint].concat(action.payload.data);
       }
     },
     [loadItems.rejected]: errorReducer,
@@ -67,7 +65,7 @@ export const punxySlice = createSlice({
     },
     [seedItems.fulfilled]: (state, action) => {
       state.status = 'succeeded';
-      state.items[action.payload.endpoint] = action.payload.data;
+      state[action.payload.endpoint] = action.payload.data;
     },
     [seedItems.rejected]: errorReducer,
   },
@@ -76,4 +74,4 @@ export const punxySlice = createSlice({
 // Select helpers for extracting punxy data units
 export const selectUser = (state) => state.punxy.user;
 export const selectStatus = (state) => state.punxy.status;
-export const selectItems = (endpoint) => (state) => state.punxy.items[endpoint];
+export const selectItems = (endpoint) => (state) => state.punxy[endpoint];
