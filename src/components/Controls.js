@@ -1,4 +1,4 @@
-export default function Controls({ ctrlHandler, seedHandler, active}) {
+export default function Controls({ctrlHandler, seedHandler, active}) {
   // Proxy handler to "bubble" up which control?
   const onControl = (e) => {
     ctrlHandler(e.target.innerText);

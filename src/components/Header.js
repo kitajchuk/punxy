@@ -1,17 +1,19 @@
-import { getUser } from '../lib/api';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../lib/slices';
 import { Link } from 'react-router-dom';
 // https://create-react-app.dev/docs/adding-images-fonts-and-files/
 import { ReactComponent as Logo } from '../assets/punxy.svg';
 
 export default function Header() {
+  const user = useSelector(selectUser);
+
   return (
     <header className="punxy__header">
       <Link to="/" className="punxy__logo">
         <Logo />
       </Link>
       <div className="punxy__user">
-        {/* you are always anonymous! */}
-        howdy, <strong>{getUser()}</strong>
+        howdy, <strong>{user}</strong>
       </div>
     </header>
   );

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Masthead from '../components/Masthead';
-import { JobsFeed } from '../components/Feed';
+import Feed from '../components/Feed';
 
 export default function Jobs() {
   useEffect(() => {
@@ -13,7 +13,11 @@ export default function Jobs() {
       <Masthead>
         <h1>fancy yourself a freelancer with illusions standing? look no further.</h1>
       </Masthead>
-      <JobsFeed loading1="locating a signal in the noise..." loading2="compiling available job options..." />
+      <Feed 
+        endpoint="jobstories"
+        loading1="locating a signal in the noise..."
+        loading2="compiling available job options..."
+      />
     </>
   );
 }

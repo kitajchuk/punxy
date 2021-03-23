@@ -11,6 +11,7 @@ export default function List({items, ctrl, sort}) {
 
   if (sort === 'hi-lo') {
     _items = sortHiLo(ctrl, _items);
+
   } else {
     _items = sortLoHi(ctrl, _items);
   }

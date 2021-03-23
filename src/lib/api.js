@@ -1,12 +1,16 @@
-import { useEffect, useState } from 'react';
-import { makeId } from './utils';
-
 // Simple local, in-memory store
 // We're not going to save this data anywhere,
 //    but we'd like the app to leverage some sessionable caching...
-// Items are indexed by their ID and collections by their endpoints.
-const store = {
-  items: {},
+// This is storing HN collections by their endpoint
+// These are just arrays of IDs for fetching items later
+//    e.g. [1, 2, 3, 4, 5, ...]
+const store = {};
+
+// Normalize mapping over a slice of IDs and fetching the item data...
+const _mapItems = (items, offset, amount) => {
+  return items.slice(offset, offset + amount).map((id) => {
+    return api.getItem(id);
+  });
 };
 
 // HN API not the "greatest" to work with as stated:
@@ -19,20 +23,12 @@ const api = {
   // Jobs up to 200 but expectedly we see much less than that...
   perPage: 25,
 
-  _mapItems(items, offset, amount) {
-    return items.slice(offset, offset + amount).map((id) => {
-      return api.getItem(id);
-    });
-  },
-
   // Since fetching collections like `newstories` returns an array of IDs we need to do work...
   // This method makes sure the data flowing into the app has actual items, not just IDs
   // Adding "force" argument to streamline methods like `seed`
   getItems(endpoint, offset = 0, amount = api.perPage, force = false) {
     if (store[endpoint] && !force) {
-      const items = api._mapItems(store[endpoint], offset, amount);
-
-      return Promise.all(items);
+      return Promise.all(_mapItems(store[endpoint], offset, amount));
 
     } else {
       return fetch(`https://hacker-news.firebaseio.com/v0/${endpoint}.json`)
@@ -40,90 +36,16 @@ const api = {
         .then((json) => {
           store[endpoint] = json;
 
-          const items = api._mapItems(json, offset, amount);
-
-          return Promise.all(items);
+          return Promise.all(_mapItems(json, offset, amount));
         });
     }
   },
 
   // I'm using Promise.all() with getItems to resolve a set of item fetches
-  // This method will either serve live or from our store but will still use a Promise for stored data
   getItem(id) {
-    if (store.items[id]) {
-      return new Promise((resolve) => {
-        resolve(store.items[id]);
-      });
-
-    } else {
-      return fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-        .then((res) => res.json())
-        .then((json) => {
-          store.items[id] = json;
-          return json;
-        });
-    }
+    return fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+      .then((res) => res.json());
   },
-
-  // The `seed` method
-  // There's some fake story to it in the app,
-  //    but really it just fetches new data for an endpoint,
-  //    updating the store.
-  seed(endpoint) {
-    const json = api.getItems(endpoint, 0, api.perPage, true);
-
-    api.prune(endpoint);
-
-    return json;
-  },
-
-  // The `prune` method
-  // Once the store endpoint has been seeded,
-  //    items need to be pruned for any possible "dead" IDs.
-  // Since items is just a flat object hash, this is a flat prune,
-  //    endpoint is necessary here as the comparison array.
-  prune(endpoint) {
-    for (let itemId in store.items) {
-      const query = store[endpoint].find((storedId) => storedId === itemId);
-
-      if (!query) {
-        delete store.items[itemId];
-      }
-    }
-  }
 };
-
-// Persist the mock user ID for a client session
-// The storytelling here is that you are always anonymous
-//    for each new transaction you make to the app...
-// returns something like `punk110100110`
-export function getUser() {
-  if (!store.user) {
-    store.user = makeId();
-  }
-
-  return store.user;
-}
-
-// HOCs
-// https://reactjs.org/docs/higher-order-components.html
-// This wraps a feed component and ensures an initial data set flows into the app
-// It passes along any additional props, the data and the endpoint for fetching more data later
-export function withHackers(endpoint, WrappedComponent) {
-  return ({...props}) => {
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-      async function fetchData() {
-        const result = await api.getItems(endpoint);
-        setData(result);
-      }
-
-      fetchData();
-    }, []);
-
-    return <WrappedComponent data={data} endpoint={endpoint} {...props} />;
-  };
-}
 
 export default api;
