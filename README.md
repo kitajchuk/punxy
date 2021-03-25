@@ -31,7 +31,7 @@ kubectl get pods
 kubectl port-forward deployment/punxy-docker 8080:80
 
 # Verify kubernetes auto-healing
-# Get a pod name from `kubectl get pods
+# Get a pod name from `kubectl get pods`
 kubectl delete pod/punxy-docker-xxxxxxxxxx-xxxxx
 
 # Watch deployment add a new pod back
