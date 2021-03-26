@@ -38,8 +38,8 @@ jobs:
                     - .
     deploy:
         working_directory: ~/punxy
-        machine:
-            enabled: true
+        docker:
+          - image: cimg/node:14.16.0
         steps:
             - attach_workspace:
                 at: ~/punxy
