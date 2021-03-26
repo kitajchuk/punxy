@@ -12,6 +12,8 @@ punxy
 
 # AWS
 
+- [punxy.kitajchuk.com](https://punxy.kitajchuk.com)
+
 ```shell
 # Build the static React app
 yarn build
