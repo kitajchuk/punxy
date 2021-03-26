@@ -13,6 +13,9 @@ punxy
 # AWS
 
 - [punxy.kitajchuk.com](https://punxy.kitajchuk.com)
+- [S3 Bucket](http://punxy.kitajchuk.com.s3-website-us-west-2.amazonaws.com/)
+- [S3+CloudFront+SSL](https://punxy.kitajchuk.com)
+  - Using AWS Certificate Manager
 
 ```shell
 # Build the static React app
@@ -24,10 +27,6 @@ yarn build
 # DISTRIBUTION_ID={id}
 yarn deploy-s3
 ```
-
-- [S3 Bucket](http://punxy.kitajchuk.com.s3-website-us-west-2.amazonaws.com/)
-- [S3+CloudFront+SSL](https://punxy.kitajchuk.com)
-  - Using AWS Certificate Manager
 
 # Docker / Kubernetes
 
