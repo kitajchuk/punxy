@@ -1,16 +1,10 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@x.y
+  aws-s3: circleci/aws-s3@2.0.0
+  aws-cloudfront: topmonks/aws-cloudfront@1.0.0
 
 jobs:
-    aws-cli-setup:
-        executor: aws-cli/default
-        steps:
-          - checkout
-          - aws-cli/setup:
-              profile-name: default
-          - run: echo "Run your code here"
     build:
         working_directory: ~/punxy
         docker:
@@ -43,16 +37,23 @@ jobs:
         steps:
             - attach_workspace:
                 at: ~/punxy
-            - run:
-                name: Deploy to S3
-                command: yarn deploy-s3
+            # - run:
+            #     name: Deploy to S3
+            #     command: yarn deploy-s3
+            - aws-s3/sync:
+                arguments: |
+                  --acl public-read \
+                  --cache-control "max-age=86400"
+                from: build
+                to: '${S3_BUCKET}'
+            - aws-cloudfront:
+                distribution_id: '${DISTRIBUTION_ID}'
+                paths: '/*'
 
 workflows:
     version: 2
     build-deploy:
         jobs:
-            - aws-cli-setup:
-                context: aws
             - build
             - deploy:
                 requires:
