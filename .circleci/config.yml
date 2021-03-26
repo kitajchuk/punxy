@@ -17,7 +17,7 @@ jobs:
             enabled: true
         steps:
             - checkout
-             - run:
+            - run:
                 name: yarn install
                 command: yarn install
             - run:
