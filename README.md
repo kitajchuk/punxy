@@ -3,9 +3,12 @@ punxy
 
 > your proxy to what the “hackers” call “news” and the latest freelance nets.
 
-[punxy.vercel.app](https://punxy.vercel.app/)
-
 <img src="./public/punxy.png" width="100%" />
+
+# Jamstack
+
+[punxy.vercel.app](https://punxy.vercel.app/)
+[punxy.netlify.app](https://punxy.netlify.app/)
 
 # Docker / Kubernetes
 
