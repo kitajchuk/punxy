@@ -37,13 +37,7 @@ jobs:
         steps:
             - attach_workspace:
                 at: ~/punxy
-            # - run:
-            #     name: Deploy to S3
-            #     command: yarn deploy-s3
             - aws-s3/sync:
-                arguments: |
-                  --acl public-read \
-                  --cache-control "max-age=86400"
                 from: build
                 to: '${S3_BUCKET}'
             - aws-cloudfront:
