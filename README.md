@@ -7,8 +7,8 @@ punxy
 
 # Jamstack
 
-[punxy.vercel.app](https://punxy.vercel.app/)
-[punxy.netlify.app](https://punxy.netlify.app/)
+- [punxy.vercel.app](https://punxy.vercel.app/)
+- [punxy.netlify.app](https://punxy.netlify.app/)
 
 # Docker / Kubernetes
 
