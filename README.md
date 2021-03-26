@@ -5,6 +5,8 @@ punxy
 
 <img src="./public/punxy.png" width="100%" />
 
+[![CircleCI Status](https://circleci.com/gh/kitajchuk/punxy.svg?style=shield)](https://app.circleci.com/pipelines/github/kitajchuk/punxy) [![Netlify Status](https://api.netlify.com/api/v1/badges/4f8a7746-1c64-4164-a1e7-1cb75c895a80/deploy-status)](https://app.netlify.com/sites/punxy/deploys)
+
 # Jamstack
 
 - [punxy.vercel.app](https://punxy.vercel.app)
