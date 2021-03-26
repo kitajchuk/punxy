@@ -1,6 +1,14 @@
-# STAGE 1 - build the react app # set the base image to build from 
+# Article:
+# https://maksood.medium.com/deploy-a-react-app-on-kubernetes-using-docker-129a75b79d58
+# Base image:
+# https://hub.docker.com/_/alpine
+
+# STAGE 1 - build the react app
+
+# set the base image to build from 
 # This is the application image from which all other subsequent 
-# applications run. Alpine Linux is a security-oriented, lightweight #(~5Mb) Linux distribution.
+# applications run. Alpine Linux is a security-oriented, lightweight
+#(~5Mb) Linux distribution.
 FROM node:alpine as build
 
 # set working directory
@@ -23,7 +31,8 @@ COPY . /app
 # build the app 
 RUN yarn build
 
-# STAGE 2 - build the final image using a nginx web server 
+# STAGE 2 - build the final image using a nginx web server
+
 # distribution and copy the react build files
 FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html

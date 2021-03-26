@@ -1,4 +1,6 @@
 # Docker kubernetes config
+# Article:
+# https://maksood.medium.com/deploy-a-react-app-on-kubernetes-using-docker-129a75b79d58
 apiVersion: apps/v1
 kind: Deployment
 metadata:
