@@ -40,7 +40,7 @@ jobs:
             - aws-s3/sync:
                 from: build
                 to: '${S3_BUCKET}'
-            - aws-cloudfront:
+            - aws-cloudfront/invalidate:
                 distribution_id: '${DISTRIBUTION_ID}'
                 paths: '/*'
 
