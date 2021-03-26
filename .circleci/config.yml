@@ -1,16 +1,16 @@
 version: 2.1
 
-orbs:
-  aws-cli: circleci/aws-cli@0.1.22
+# orbs:
+#   aws-cli: circleci/aws-cli@0.1.22
 
 jobs:
-    aws-cli-setup:
-        executor: aws-cli/default
-        steps:
-          - checkout
-          - aws-cli/setup:
-              profile-name: default
-          - run: echo "Run your code here"
+    # aws-cli-setup:
+    #     executor: aws-cli/default
+    #     steps:
+    #       - checkout
+    #       - aws-cli/setup:
+    #           profile-name: default
+    #       - run: echo "Run your code here"
     build:
         working_directory: ~/punxy
         docker:
@@ -44,15 +44,15 @@ jobs:
             - attach_workspace:
                 at: ~/punxy
             - run:
-                name: yarn deploy-s3
+                name: Deploy to S3
                 command: yarn deploy-s3
 
 workflows:
     version: 2
     build-deploy:
         jobs:
-            - aws-cli-setup:
-                context: aws
+            # - aws-cli-setup:
+            #     context: aws
             - build
             - deploy:
                 requires:
