@@ -10,6 +10,24 @@ punxy
 - [punxy.vercel.app](https://punxy.vercel.app/)
 - [punxy.netlify.app](https://punxy.netlify.app/)
 
+# AWS
+
+- [punxy.kitajchuk.com](https://punxy.kitajchuk.com)
+- [S3 Bucket](http://punxy.kitajchuk.com.s3-website-us-west-2.amazonaws.com/)
+- [S3+CloudFront+SSL](https://punxy.kitajchuk.com)
+  - Using AWS Certificate Manager
+
+```shell
+# Build the static React app
+yarn build
+
+# Deploy to S3 bucket with AWS CLI
+# Environment variables stored in .env.punxy
+# S3_BUCKET={bucket}
+# DISTRIBUTION_ID={id}
+yarn deploy-s3
+```
+
 # Docker / Kubernetes
 
 [kitajchuk/punxy-docker](https://hub.docker.com/repository/docker/kitajchuk/punxy-docker)
