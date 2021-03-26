@@ -7,25 +7,29 @@ punxy
 
 # Jamstack
 
-- [punxy.vercel.app](https://punxy.vercel.app/)
-- [punxy.netlify.app](https://punxy.netlify.app/)
+- [punxy.vercel.app](https://punxy.vercel.app)
+- [punxy.netlify.app](https://punxy.netlify.app)
 
 # AWS
 
 - [punxy.kitajchuk.com](https://punxy.kitajchuk.com)
-- [S3 Bucket](http://punxy.kitajchuk.com.s3-website-us-west-2.amazonaws.com/)
+- [S3 Bucket](http://punxy.kitajchuk.com.s3-website-us-west-2.amazonaws.com)
 - [S3+CloudFront+SSL](https://punxy.kitajchuk.com)
   - Using AWS Certificate Manager
+  - Using [CircleCI](https://circleci.com) for CI/CD
 
 ```shell
 # Build the static React app
 yarn build
 
-# Deploy to S3 bucket with AWS CLI
-# Environment variables stored in .env.punxy
+# Deploy to S3 bucket with AWS CLI from a local machine
+# Environment variables stored in .env.punxy exposed with env-cmd
 # S3_BUCKET={bucket}
 # DISTRIBUTION_ID={id}
-yarn deploy-s3
+yarn deploy
+
+# Note that circleci will run yarn deploy-s3 directly
+# This is because the env vars are exposed at runtime
 ```
 
 # Docker / Kubernetes
