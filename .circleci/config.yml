@@ -13,8 +13,8 @@ jobs:
           - run: echo "Run your code here"
     build:
         working_directory: ~/punxy
-        machine:
-            enabled: true
+        docker:
+          - image: cimg/node:14.16.0
         steps:
             - checkout
             - run:
