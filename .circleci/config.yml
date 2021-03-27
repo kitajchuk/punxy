@@ -14,7 +14,7 @@ jobs:
             - restore_cache:
                 name: Restore Yarn Package Cache
                 keys:
-                  - yarn-packages-{{ checksum "yarn.lock" }}
+                    - yarn-packages-{{ checksum "yarn.lock" }}
             - run:
                 name: Install Dependencies
                 command: yarn install --immutable
@@ -22,7 +22,7 @@ jobs:
                 name: Save Yarn Package Cache
                 key: yarn-packages-{{ checksum "yarn.lock" }}
                 paths:
-                  - ~/.cache/yarn
+                    - ~/.cache/yarn
             - run:
                 name: Build Static Site
                 command: yarn build
