@@ -38,6 +38,7 @@ jobs:
             - attach_workspace:
                 at: ~/punxy
             - aws-s3/sync:
+                arguments: --delete
                 from: build
                 to: '${S3_BUCKET}'
             - aws-cloudfront/invalidate:
