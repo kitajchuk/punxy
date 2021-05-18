@@ -1,43 +1,61 @@
-# Docker kubernetes config
-# Article:
-# https://maksood.medium.com/deploy-a-react-app-on-kubernetes-using-docker-129a75b79d58
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: punxy-docker
+spec:
+  type: LoadBalancer
+  selector:
+    app: punxy-docker
+    group: frontend
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: punxy-docker
-    labels:
-        app: punxy-docker
+  name: punxy-docker
+  labels:
+    app: punxy-docker
+    group: frontend
 spec:
-    selector:
-        matchLabels:
-            app: punxy-docker
-    replicas: 2
-    template:
-        metadata:
-            labels:
-                app: punxy-docker
-        spec:
-            containers:
-            - name: punxy-docker
-              image: kitajchuk/punxy-docker
-              ports:
-              - containerPort: 80
-              resources:
-                  limits:
-                      memory: '128Mi'
-                      cpu: '200m'
-              livenessProbe:
-                  httpGet:
-                      path: /index.html
-                      port: 80
-                  initialDelaySeconds: 15
-                  timeoutSeconds: 2
-                  periodSeconds: 5
-                  failureThreshold: 1
-              readinessProbe:
-                  httpGet:
-                      path: /index.html
-                      port: 80
-                  initialDelaySeconds: 15
-                  periodSeconds: 5
-                  failureThreshold: 1
+  selector:
+    matchLabels:
+      app: punxy-docker
+      group: frontend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: punxy-docker
+        group: frontend
+    spec:
+      containers:
+      - name: punxy-docker
+        image: kitajchuk/punxy-docker
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 80
+        resources:
+          limits:
+            memory: '128Mi'
+            cpu: '200m'
+        livenessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          initialDelaySeconds: 15
+          timeoutSeconds: 2
+          periodSeconds: 5
+          failureThreshold: 1
+        readinessProbe:
+          httpGet:
+            path: /index.html
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 5
+          failureThreshold: 1

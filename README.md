@@ -44,39 +44,18 @@ yarn deploy
 [kitajchuk/punxy-docker](https://hub.docker.com/repository/docker/kitajchuk/punxy-docker)
 
 ```shell
-# Build docker image for punxy
-docker build -t punxy-docker .
+# Builds docker image for punxy
+yarn build && docker build --tag kitajchuk/punxy-docker:latest .
 
-# Run a docker container for punxy image
-docker run -dp 3000:80  punxy-docker:latest
+# Publishes the latest image for punxy
+docker push kitajchuk/punxy-docker:latest
 
-# Deploy punxy containers to docker kubernetes cluster
+# Runs a docker container for punxy image
+docker run --detach --rm --name punxy-docker --publish 3000:80 kitajchuk/punxy-docker:latest
+
+# Deploys punxy containers to k8s cluster
+# You can just ping http://localhost to hit the app
 kubectl apply -f deployment.yml
-
-# Verify deployment
-kubectl get deployment
-
-# Verify the pods
-kubectl get pods
-
-# Verify the App is working in the cluster
-kubectl port-forward deployment/punxy-docker 8080:80
-
-# Verify kubernetes auto-healing
-# Get a pod name from `kubectl get pods`
-kubectl delete pod/punxy-docker-xxxxxxxxxx-xxxxx
-
-# Watch deployment add a new pod back
-kubectl get deployment --watch
-
-# Output will be something like this at first:
-# NAME           READY   UP-TO-DATE   AVAILABLE   AGE
-# punxy-docker   1/2     2            1           6h41m
-
-# And will resolve to something like this since we specify 2 replicas:
-# NAME           READY   UP-TO-DATE   AVAILABLE   AGE
-# punxy-docker   1/2     2            1           6h41m
-# punxy-docker   2/2     2            2           6h41m
 ```
 
 # Getting Started with Create React App
