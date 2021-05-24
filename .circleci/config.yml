@@ -1,58 +1,59 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@2.0.2
+  aws-s3: circleci/aws-s3@2.0.0
+  aws-cloudfront: topmonks/aws-cloudfront@1.0.0
 
 jobs:
-  build:
-    working_directory: ~/punxy
-    docker:
-      - image: cimg/node:14.16.0
-    steps:
-      - checkout
-      - restore_cache:
-        name: Restore Yarn Package Cache
-        keys:
-          - yarn-packages-{{ checksum "yarn.lock" }}
-      - run:
-        name: Install Dependencies
-        command: yarn install --immutable
-      - save_cache:
-        name: Save Yarn Package Cache
-        key: yarn-packages-{{ checksum "yarn.lock" }}
-        paths:
-          - ~/.cache/yarn
-      - run:
-        name: Build Static Site
-        command: yarn build
-      - persist_to_workspace:
-        root: ~/punxy
-        paths:
-          - .
-  deploy:
-    working_directory: ~/punxy
-    docker:
-      - image: cimg/node:14.16.0
-    steps:
-      - attach_workspace:
-        at: ~/punxy
-      - aws-cli/setup
-      - run:
-        name: AWS S3 Sync
-        command: aws s3 sync build '${S3_BUCKET}' --delete
-      - run:
-        name: AWS CloudFront Invalidation
-        command: aws cloudfront create-invalidation --distribution-id '${DISTRIBUTION_ID}' --paths '/*'
+    build:
+        working_directory: ~/punxy
+        docker:
+          - image: cimg/node:14.16.0
+        steps:
+            - checkout
+            - restore_cache:
+                name: Restore Yarn Package Cache
+                keys:
+                    - yarn-packages-{{ checksum "yarn.lock" }}
+            - run:
+                name: Install Dependencies
+                command: yarn install --immutable
+            - save_cache:
+                name: Save Yarn Package Cache
+                key: yarn-packages-{{ checksum "yarn.lock" }}
+                paths:
+                    - ~/.cache/yarn
+            - run:
+                name: Build Static Site
+                command: yarn build
+            - persist_to_workspace:
+                root: ~/punxy
+                paths:
+                    - .
+    deploy:
+        working_directory: ~/punxy
+        docker:
+          - image: cimg/node:14.16.0
+        steps:
+            - attach_workspace:
+                at: ~/punxy
+            - aws-cli/setup
+            - run:
+                name: AWS S3 Sync
+                command: aws s3 sync build '${S3_BUCKET}' --delete
+            - run:
+                name: AWS CloudFront Invalidation
+                command: aws cloudfront create-invalidation --distribution-id '${DISTRIBUTION_ID}' --paths '/*'
 
 workflows:
-  version: 2
-  build-deploy:
-    jobs:
-      - build
-      - deploy:
-        context: aws
-        requires:
-          - build
-        filters:
-          branches:
-            only: master
+    version: 2
+    build-deploy:
+        jobs:
+            - build
+            - deploy:
+                context: aws
+                requires:
+                    - build
+                filters:
+                    branches:
+                        only: master
