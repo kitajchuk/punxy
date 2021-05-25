@@ -45,7 +45,7 @@ yarn deploy
 
 ```shell
 # Builds docker image for punxy
-yarn build && docker build --tag kitajchuk/punxy-docker:latest .
+docker build --tag kitajchuk/punxy-docker:latest .
 
 # Publishes the latest image for punxy
 docker push kitajchuk/punxy-docker:latest
