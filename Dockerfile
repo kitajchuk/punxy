@@ -23,10 +23,9 @@ RUN yarn build
 # Build the final image using a nginx web server
 # Distribution and copy the react build files
 FROM nginx:alpine
-COPY --from=build /app/build /usr/share/nginx/html
 
 # Copy the app build (generated with "yarn build")
-COPY ./build /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
 
 # Needed this to make React Router work properly 
 RUN rm /etc/nginx/conf.d/default.conf
