@@ -7,6 +7,7 @@ punxy
 
 [![CircleCI Status](https://circleci.com/gh/kitajchuk/punxy.svg?style=shield)](https://app.circleci.com/pipelines/github/kitajchuk/punxy) [![Netlify Status](https://api.netlify.com/api/v1/badges/4f8a7746-1c64-4164-a1e7-1cb75c895a80/deploy-status)](https://app.netlify.com/sites/punxy/deploys)
 
+
 # Jamstack
 
 - [punxy.vercel.app](https://punxy.vercel.app)
@@ -60,7 +61,7 @@ kubectl apply -f deployment.yml
 
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). However, it is using [cra-preact](https://github.com/shilangyu/cra-preact) to generate Preact optimized Production builds which reduce the JavaScript payloads by half.
 
 ## Available Scripts
 
