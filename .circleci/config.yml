@@ -28,7 +28,7 @@ jobs:
             - persist_to_workspace:
                 root: ~/punxy
                 paths:
-                    - .
+                    - build
     deploy:
         working_directory: ~/punxy
         docker:
