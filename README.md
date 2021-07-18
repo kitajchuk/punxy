@@ -5,6 +5,7 @@ punxy
 
 <img src="./public/punxy.png" width="100%" />
 
+[![CI](https://github.com/kitajchuk/punxy/actions/workflows/main.yml/badge.svg)](https://github.com/kitajchuk/punxy/actions/workflows/main.yml)
 [![CircleCI Status](https://circleci.com/gh/kitajchuk/punxy.svg?style=shield)](https://app.circleci.com/pipelines/github/kitajchuk/punxy) [![Netlify Status](https://api.netlify.com/api/v1/badges/4f8a7746-1c64-4164-a1e7-1cb75c895a80/deploy-status)](https://app.netlify.com/sites/punxy/deploys)
 
 ## Stack
@@ -25,34 +26,7 @@ punxy
 - [punxy.vercel.app](https://punxy.vercel.app)
 - [punxy.netlify.app](https://punxy.netlify.app)
 
-## AWS / CircleCI
-
-- [punxy.kitajchuk.com](https://punxy.kitajchuk.com)
-- [S3 Bucket](http://punxy.kitajchuk.com.s3-website-us-west-2.amazonaws.com)
-- [S3+CloudFront+SSL](https://punxy.kitajchuk.com)
-  - Using AWS Certificate Manager
-  - Using [CircleCI](https://circleci.com) for CI/CD
-    - Required env vars for the project:
-      - `S3_BUCKET`
-      - `DISTRIBUTION_ID`
-      - `AWS_ACCESS_KEY_ID`
-      - `AWS_SECRET_ACCESS_KEY`
-      - `AWS_REGION`
-    - Using [aws-s3 orb](https://circleci.com/developer/orbs/orb/circleci/aws-s3)
-    - Using [aws-cloudfront orb](https://circleci.com/developer/orbs/orb/topmonks/aws-cloudfront)
-
-Deploy to S3 bucket with AWS CLI from a local machine. Environment variables stored in `.env.punxy` exposed with `env-cmd`.
-
-```shell
-# Build the static React app
-yarn build
-
-# S3_BUCKET={bucket}
-# DISTRIBUTION_ID={id}
-yarn deploy
-```
-
-## Docker / Kubernetes
+## Docker / k8s
 
 [kitajchuk/punxy-docker](https://hub.docker.com/repository/docker/kitajchuk/punxy-docker)
 
