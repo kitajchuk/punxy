@@ -48,5 +48,8 @@
   },
   "devDependencies": {
     "cra-preact": "^0.4.0"
+  },
+  "jest": {
+    "transformIgnorePatterns": []
   }
 }
