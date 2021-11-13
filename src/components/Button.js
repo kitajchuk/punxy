@@ -1,4 +1,4 @@
-import { withAnimate } from '../lib/animate';
+import { withAnimate } from './animate';
 
 function Button(props) {
   return (

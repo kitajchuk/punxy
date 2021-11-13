@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import store from './lib/store';
+import store from './store';
 import { Provider } from 'react-redux';
 
 import reportWebVitals from './reportWebVitals';
+
+window.punxy = store;
 
 ReactDOM.render(
   <React.StrictMode>

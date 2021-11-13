@@ -1,5 +1,5 @@
 import Item from './Item';
-import { sortLoHi, sortHiLo } from '../lib/utils';
+import { sortLoHi, sortHiLo } from '../utils';
 
 export default function List({items, ctrl, sort}) {
   // HN can return `null` for items in some cases...

@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
-import { selectUser } from '../lib/slices';
 import { Link } from 'react-router-dom';
+
+import { selectUser } from '../store/selectors';
 // https://create-react-app.dev/docs/adding-images-fonts-and-files/
 import { ReactComponent as Logo } from '../assets/punxy.svg';
 

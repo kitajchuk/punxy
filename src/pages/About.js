@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
-import Masthead from '../components/Masthead';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../lib/slices';
+
+import { selectUser } from '../store/selectors';
+import Masthead from '../components/Masthead';
 
 // A little storytelling here...
 // I came up with the idea for my app on a run the other day

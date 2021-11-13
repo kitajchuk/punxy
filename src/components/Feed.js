@@ -1,7 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { selectItems, selectStatus, loadItems, seedItems } from '../lib/slices';
 import { useState, useEffect } from 'react';
-import { randoText } from '../lib/utils';
+
+import { loadItems, seedItems } from '../store/actions';
+import { selectItems, selectStatus } from '../store/selectors';
+import { randoText } from '../utils';
 import Controls from './Controls';
 import Button from './Button';
 import Loading from './Loading';
