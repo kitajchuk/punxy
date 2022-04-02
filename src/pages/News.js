@@ -15,8 +15,8 @@ export default function News() {
       </Masthead>
       <Feed 
         endpoint="newstories"
-        loading1='intercepting global hacker networks..'
-        loading2='streaming the latest transactions...'
+        loading1="connecting to network nodes..."
+        loading2="querying latest data blocks..."
       />
     </>
   );

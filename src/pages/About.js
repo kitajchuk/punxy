@@ -23,7 +23,17 @@ export default function About() {
         <h1>i guess we gave you too much credit. anyway, here's what we do “know”.</h1>
       </Masthead>
       <div className="punxy__wtf">
-        <p><strong>punxy</strong> is an autonomous, global cyber net. even we don't know how it works. it's theorized that a small clan of elite hackers are responsible for the creation of <strong>punxy</strong> some time ago, around the year 2049. nothing is known about this supposed group of elitists. like we said, it's just a theory. it's also prophesied that <strong>punxy</strong> will one day evolve into a bio-enhanced, cybernetic entity capable of immeasurable feats of consciousness. maybe it will be able to unlock consciousness itself. again, all theorized. for now, we manage to use <strong>punxy</strong> to scour the cyber highways, dropping nets to intercept and aggregate hacker transactions in near real-time. we provide that service to you, the mundane hacker, in hopes you may one day level up and provide some value to the greater hacker community. see you in the nets cyber <strong>{user}</strong>...</p>
+        <p>
+          <strong>punxy</strong> is an autonomous, global cyber net. 
+          presumably the <strong>punxy</strong> AI came online sometime around the year 2049. 
+          no one knows for sure anymore. 
+          if you're any kind of leet hacker you would know this already. 
+          today we use only a small portion of the <strong>punxy</strong> neural-net to aggregate global hacker feeds and dark net bounties. 
+          this is the first stop on your way to becoming a leet hacker. 
+          beyond <strong>punxy</strong> a whole network of cyber surfing awaits your tingling neurons. 
+          don't be scared, space cowboy, and proceed without caution. 
+        </p>
+        <p>see you in dark nets <strong>{user}</strong>...</p>
         <p>&mdash;1337</p>
       </div>
     </>

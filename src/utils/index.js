@@ -62,14 +62,14 @@ export function sortHiLo(key, items) {
 // You could really go to town with this
 // An enhancement would be to ensure the same value is never returned twice in a row!
 const _texts = [
-  'more, i must see more!',
-  'you gotta be kidding me...',
+  'more juice',
+  'smash the button',
   'hit me again',
-  'ya know yer gonna do it',
-  'come on, one more hit',
-  'one more dose of mediocrity, please',
-  'tempting...i might do it...',
-  'mmk, i guess so',
+  'one more time',
+  'hit me',
+  'do tell more',
+  'one more round',
+  'next please',
 ];
 
 // The private random text indexer...

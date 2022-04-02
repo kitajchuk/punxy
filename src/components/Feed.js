@@ -25,7 +25,7 @@ export default function Feed({endpoint, loading1, loading2}) {
   const [sort, setSort] = useState('hi-lo');
 
   // Contextual load texts
-  const [loadText, setLoadText] = useState(status === 'seeding' ? 'seeding transactions with peers...' : loading1);
+  const [loadText, setLoadText] = useState(status === 'seeding' ? 'seeding network blocks...' : loading1);
 
   // Track when we're seeding the datas...
   const [seeding, setSeeding] = useState(false);
@@ -34,7 +34,7 @@ export default function Feed({endpoint, loading1, loading2}) {
   let buttonText;
 
   if (status === 'loading') {
-    buttonText = 'crunching more bytes...';
+    buttonText = 'querying new data blocks...';
 
   } else if (status === `endofline_${endpoint}`) {
     buttonText = 'end of line. try seeding...';
@@ -78,7 +78,7 @@ export default function Feed({endpoint, loading1, loading2}) {
       return;
     }
 
-    setLoadText('seeding peer transactions...');
+    setLoadText('seeding network blocks...');
     setSeeding(false);
 
     dispatch(seedItems({

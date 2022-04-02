@@ -15,8 +15,8 @@ export default function Jobs() {
       </Masthead>
       <Feed 
         endpoint="jobstories"
-        loading1="locating a signal in the noise..."
-        loading2="compiling available job options..."
+        loading1="locating signals in the noise..."
+        loading2="indexing the dark net bounty board..."
       />
     </>
   );
