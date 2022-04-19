@@ -24,30 +24,11 @@ $blue: #1795d4;
 $teal: #2affea;
 
 /******************************************************************************
- * Fonts
-*******************************************************************************/
-$font-monospace: "panicsans";
-$font-monospace-bold: "#{$font-monospace}bold";
-
-@font-face {
-    font-family: $font-monospace;
-    src: url( "../fonts/#{$font-monospace}.woff" ) format( "woff" );
-    font-style: normal;
-    font-stretch: normal;
-}
-@font-face {
-    font-family: $font-monospace-bold;
-    src: url( "../fonts/#{$font-monospace-bold}.woff" ) format( "woff" );
-    font-style: normal;
-    font-stretch: normal;
-}
-
-/******************************************************************************
  * Global
 *******************************************************************************/
 body {
   color: $black;
-  font-family: $font-monospace;
+  font-family: "panicsans", monospace;
   font-size: 14px;
   line-height: 1.7142857143;
 
@@ -63,7 +44,7 @@ body {
 }
 
 strong {
-  font-family: $font-monospace-bold;
+  font-family: "panicsansbold";
 }
 
 .-anim {

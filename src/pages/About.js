@@ -29,7 +29,7 @@ export default function About() {
           no one knows for sure anymore. 
           if you're any kind of leet hacker you would know this already. 
           today we use only a small portion of the <strong>punxy</strong> neural-net to aggregate global hacker feeds and dark net bounties. 
-          this is the first stop on your way to becoming a leet hacker. 
+          this is the first stop on any script kiddie's way to becoming a leet hacker. 
           beyond <strong>punxy</strong> a whole network of cyber surfing awaits your tingling neurons. 
           don't be scared, space cowboy, and proceed without caution. 
         </p>

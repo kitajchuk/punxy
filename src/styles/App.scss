@@ -79,7 +79,7 @@
 
 .punxy__link {
   &.is-active {
-    font-family: $font-monospace-bold;
+    font-family: "panicsansbold";
   }
 }
 
@@ -99,7 +99,7 @@
   }
 
   a {
-    font-family: $font-monospace-bold;
+    font-family: "panicsansbold";
   }
 }
 
@@ -153,7 +153,7 @@
   }
 
   li.is-active {
-    font-family: $font-monospace-bold;
+    font-family: "panicsansbold";
   }
 
   // Anchors `Seed` UI to the right of Controls
@@ -175,7 +175,7 @@
 .punxy__btn {
   background-color: $black;
   color: $white;
-  font-family: $font-monospace-bold;
+  font-family: "panicsansbold";
   padding: 16px;
   cursor: pointer;
   margin-bottom: 32px;
@@ -241,7 +241,7 @@
 .punxy__title {
   font-size: 18px;
   line-height: 2;
-  font-family: $font-monospace-bold;
+  font-family: "panicsansbold";
   text-transform: lowercase;
 
   @media (max-width: $mob-width) {

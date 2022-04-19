@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <header className="punxy__header">
-      <Link to="/" className="punxy__logo">
+      <Link to="/" className="punxy__logo" title="punxy">
         <Logo />
       </Link>
       <div className="punxy__user">

@@ -1,0 +1,12 @@
+@font-face {
+    font-family: "panicsans";
+    src: url( "/fonts/panicsans.woff" ) format( "woff" );
+    font-style: normal;
+    font-stretch: normal;
+}
+@font-face {
+    font-family: "panicsansbold";
+    src: url( "/fonts/panicsansbold.woff" ) format( "woff" );
+    font-style: normal;
+    font-stretch: normal;
+}

@@ -24,7 +24,7 @@
     "build": "cra-preact build",
     "test": "cra-preact test",
     "eject": "react-scripts eject",
-    "deploy": "env-cmd -f .env.punxy yarn deploy-s3",
+    "deploy": "env-cmd -f .env yarn deploy-s3",
     "deploy-s3": "aws s3 sync ./build ${S3_BUCKET} --exclude '.*'",
     "postdeploy-s3": "aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths '/*'"
   },

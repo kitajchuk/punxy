@@ -1,11 +1,11 @@
-import { withAnimate } from './animate';
+import { Animate } from './animate';
 
-function Button(props) {
+export default function Button(props) {
   return (
-    <button onClick={props.handler} className="punxy__btn -btn">
-      {props.children}
-    </button>
+    <Animate>
+      <button onClick={props.handler} className="punxy__btn -btn">
+        {props.children}
+      </button>
+    </Animate>
   );
 }
-
-export default withAnimate(Button);
