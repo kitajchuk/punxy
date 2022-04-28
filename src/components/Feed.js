@@ -1,16 +1,19 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 
-import { loadItems, seedItems } from '../store/actions';
+import { loadItems, refreshItems } from '../store/actions';
 import { selectItems, selectStatus } from '../store/selectors';
-import { randoText } from '../utils';
 import Controls from './Controls';
 import Button from './Button';
 import Loading from './Loading';
 import List from './List';
 import Modal from './Modal';
 
-export default function Feed({endpoint, loading1, loading2}) {
+export default function Feed({
+  endpoint,
+  loading1 = 'connecting to network nodes...',
+  loading2 = 'querying latest data blocks...',
+}) {
   // State from the redux store
   const items = useSelector(selectItems(endpoint));
   const status = useSelector(selectStatus);
@@ -25,10 +28,10 @@ export default function Feed({endpoint, loading1, loading2}) {
   const [sort, setSort] = useState('hi-lo');
 
   // Contextual load texts
-  const [loadText, setLoadText] = useState(status === 'seeding' ? 'seeding network blocks...' : loading1);
+  const [loadText, setLoadText] = useState(status === 'refreshing' ? 'refreshing data blocks...' : loading1);
 
-  // Track when we're seeding the datas...
-  const [seeding, setSeeding] = useState(false);
+  // Track when we're refreshing the datas...
+  const [refreshing, setRefreshing] = useState(false);
 
   // Playful, randomized button text...
   let buttonText;
@@ -37,10 +40,10 @@ export default function Feed({endpoint, loading1, loading2}) {
     buttonText = 'querying new data blocks...';
 
   } else if (status === `endofline_${endpoint}`) {
-    buttonText = 'end of line. try seeding...';
+    buttonText = 'end of line. try refreshing...';
 
   } else {
-    buttonText = randoText();
+    buttonText = 'load more';
   }
 
   const onControl = (ctrl) => {
@@ -61,27 +64,27 @@ export default function Feed({endpoint, loading1, loading2}) {
     }));
   };
 
-  const onSeed = () => {
+  const onRefresh = () => {
     if (status === 'loading') {
       return;
     }
 
-    setSeeding(true);
+    setRefreshing(true);
   };
 
   const onAbort = () => {
-    setSeeding(false);
+    setRefreshing(false);
   };
 
   const onConfirm = () => {
-    if (status === 'loading' || status === 'seeding') {
+    if (status === 'loading' || status === 'refreshing') {
       return;
     }
 
-    setLoadText('seeding network blocks...');
-    setSeeding(false);
+    setLoadText('refreshing network blocks...');
+    setRefreshing(false);
 
-    dispatch(seedItems({
+    dispatch(refreshItems({
       endpoint,
     }));
   };
@@ -100,17 +103,17 @@ export default function Feed({endpoint, loading1, loading2}) {
   }, [items, dispatch, endpoint, loading2]);
 
   return (
-    <div className="punxy__feed">
-      {(items.length && status !== 'seeding') ? (
+    <main className="punxy__feed">
+      {(items.length && status !== 'refreshing') ? (
         <>
-          <Controls active={ctrl} ctrlHandler={onControl} seedHandler={onSeed} />
+          <Controls active={ctrl} ctrlHandler={onControl} refreshHandler={onRefresh} />
           <List items={items} ctrl={ctrl} sort={sort} />
           <Button handler={onButton}>{buttonText}</Button>
         </>
       ) : (
         <Loading>{loadText}</Loading>
       )}
-      {seeding && <Modal abortHandler={onAbort} confirmHandler={onConfirm} />}
-    </div>
+      {refreshing && <Modal abortHandler={onAbort} confirmHandler={onConfirm} />}
+    </main>
   );
 }

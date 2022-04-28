@@ -54,11 +54,27 @@
       height: 24px;
     }
 
-    .is-jobs & {
+    .top & {
+      fill: $pink;
+    }
+
+    .best & {
+      fill: $grey-dark;
+    }
+
+    .ask & {
+      fill: $green;
+    }
+
+    .show & {
+      fill: $teal;
+    }
+
+    .jobs & {
       fill: $white;
     }
 
-    .is-wtf & {
+    .info & {
       fill: $purple;
     }
   }
@@ -68,12 +84,31 @@
  * <Navi />
 *******************************************************************************/
 .punxy__navi {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 2.3333333333;
   margin-top: 32px;
 
   @media (max-width: $mob-width) {
-    font-size: 16px;
+    display: flex;
+  }
+
+  ul {
+    white-space: nowrap;
+    overflow-y: auto;
+
+    @media (max-width: $mob-width) {
+      width: 100%;
+    }
+
+    li {
+      &:after {
+        content: "\00a0/\00a0";
+      }
+
+      &:last-child:after {
+        content: "";
+      }
+    }
   }
 }
 
@@ -104,9 +139,9 @@
 }
 
 /******************************************************************************
- * <About />
+ * <info />
 *******************************************************************************/
-.punxy__wtf {
+.punxy__info {
   padding: 32px;
 
   @media (max-width: $min-width) {
@@ -116,6 +151,17 @@
 
   p + p {
     margin-top: 64px;
+  }
+}
+
+.punxy__friendsters {
+  padding: 64px 0;
+  max-width: 420px;
+  width: 100%;
+  // margin: 0 auto;
+
+  svg {
+    width: 100%;
   }
 }
 
@@ -140,7 +186,23 @@
     padding-bottom: 16px;
   }
 
-  .is-jobs & {
+  .top & {
+    background-color: rgba(17, 17, 17, 0.9);
+  }
+
+  .best & {
+    background-color: rgba(242, 109, 125, 0.9);
+  }
+
+  .ask & {
+    background-color: rgba(100, 65, 164, 0.9);
+  }
+
+  .show & {
+    background-color: rgba(51, 51, 51, 0.9);
+  }
+
+  .jobs & {
     background-color: rgba(0, 0, 0, 0.9);
   }
 
@@ -156,7 +218,7 @@
     font-family: "panicsansbold";
   }
 
-  // Anchors `Seed` UI to the right of Controls
+  // Anchors `refresh` UI to the right of Controls
   li:last-child {
     margin-left: auto;
   }
@@ -165,10 +227,25 @@
 .punxy__seed {
   background-color: transparent;
   cursor: pointer;
-  color: $purple;
 
-  .is-jobs & {
+  .top & {
+    color: $pink;
+  }
+
+  .best & {
+    color: $grey-dark;
+  }
+
+  .ask & {
     color: $green;
+  }
+
+  .show & {
+    color: $teal;
+  }
+
+  .jobs & {
+    color: $white;
   }
 }
 
@@ -180,7 +257,27 @@
   cursor: pointer;
   margin-bottom: 32px;
 
-  .is-jobs & {
+  .top & {
+    background-color: $pink;
+    color: $grey-black;
+  }
+
+  .best & {
+    background-color: $grey-dark;
+    color: $pink;
+  }
+
+  .ask & {
+    background-color: $green;
+    color: $purple;
+  }
+
+  .show & {
+    background-color: $teal;
+    color: $grey-dark;
+  }
+
+  .jobs & {
     background-color: $white;
     color: $black;
   }
@@ -207,10 +304,28 @@
   }
 
   div:last-child button {
-    background-color: $purple;
+    .top & {
+      background-color: $pink;
+      color: $grey-black;
+    }
 
-    .is-jobs & {
+    .best & {
+      background-color: $grey-dark;
+      color: $pink;
+    }
+
+    .ask & {
       background-color: $green;
+      color: $purple;
+    }
+
+    .show & {
+      background-color: $teal;
+      color: $grey-dark;
+    }
+
+    .jobs & {
+      background-color: $white;
     }
   }
 }
@@ -258,33 +373,77 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 111001001;
 
-  .is-jobs & {
-    background-color: rgba(0, 0, 0, 0.9);
+  .top & {
+    background-color: rgba(17, 17, 17, 0.8);
+    color: $pink;
+  }
+
+  .best & {
+    background-color: rgba(242, 109, 125, 0.8);
+    color: $grey-dark;
+  }
+
+  .ask & {
+    background-color: rgba(100, 65, 164, 0.8);
+    color: $green;
+  }
+
+  .show & {
+    background-color: rgba(51, 51, 51, 0.8);
+    color: $teal;
+  }
+
+  .jobs & {
+    background-color: rgba(0, 0, 0, 0.8);
     color: $white;
   }
 
   .punxy__mast {
     padding-left: 0;
     padding-right: 0;
+    padding-top: 0;
   }
 
   .punxy__modal__wrap {
     max-width: $max-width;
     padding: 32px;
+    overflow: hidden;
     background-color: $white;
+    border: 1px solid $black;
 
     @media (max-width: $min-width) {
       padding: 16px;
     }
 
-    .is-jobs & {
+    .top & {
+      background-color: $grey-black;
+      border: 1px solid $pink;
+    }
+
+    .best & {
+      background-color: $pink;
+      border: 1px solid $grey-dark;
+    }
+
+    .ask & {
+      background-color: $purple;
+      border: 1px solid $green;
+    }
+
+    .show & {
+      background-color: $grey-dark;
+      border: 1px solid $teal;
+    }
+
+    .jobs & {
       background-color: $black;
+      border: 1px solid $white;
     }
   }
 }

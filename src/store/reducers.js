@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { loadItems, seedItems } from './actions'
+import { loadItems, refreshItems } from './actions'
 import { makeId } from '../utils';
 
 // punxy slice for global data store
@@ -11,11 +11,19 @@ export const slice = createSlice({
     error: null,
     items: {
       newstories: [],
+      topstories: [],
+      beststories: [],
+      askstories: [],
+      showstories: [],
       jobstories: [],
     },
     user: makeId(),
     ids: {
       newstories: [],
+      topstories: [],
+      beststories: [],
+      askstories: [],
+      showstories: [],
       jobstories: [],
     },
   },
@@ -41,18 +49,18 @@ export const slice = createSlice({
       state.status = 'failed';
       state.error = action.error.message;
     },
-    // Seeding...
-    [seedItems.pending]: (state) => {
-      state.status = 'seeding';
+    // Refreshing...
+    [refreshItems.pending]: (state) => {
+      state.status = 'refreshing';
     },
-    [seedItems.fulfilled]: (state, action) => {
+    [refreshItems.fulfilled]: (state, action) => {
       const { ids, items, endpoint } = action.payload;
 
       state.status = 'succeeded';
       state.ids[endpoint] = ids;
       state.items[endpoint] = items;
     },
-    [seedItems.rejected]: (state, action) => {
+    [refreshItems.rejected]: (state, action) => {
       state.status = 'failed';
       state.error = action.error.message;
     },

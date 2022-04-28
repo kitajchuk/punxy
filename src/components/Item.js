@@ -1,5 +1,5 @@
 import { formatDate } from '../utils';
-import { Animate } from './animate';
+import { Animate } from './Animation';
 // https://create-react-app.dev/docs/adding-images-fonts-and-files/
 import { ReactComponent as ExLinkIcon } from '../assets/external-link.svg';
 

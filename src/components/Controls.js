@@ -1,12 +1,12 @@
-export default function Controls({ctrlHandler, seedHandler, active}) {
+export default function Controls({ctrlHandler, refreshHandler, active}) {
   // Proxy handler to "bubble" up which control?
   const onControl = (e) => {
     ctrlHandler(e.target.innerText);
   };
 
   // Proxy handler to "bubble" up our desire to contribute?
-  const onSeed = (e) => {
-    seedHandler(e.target.innerText);
+  const onRefresh = (e) => {
+    refreshHandler(e.target.innerText);
   };
 
   return (
@@ -17,7 +17,7 @@ export default function Controls({ctrlHandler, seedHandler, active}) {
         <li className={active === 'score' ? 'is-active' : ''} onClick={onControl}>score</li>
         <li>&nbsp;/&nbsp;</li>
         <li className={active === 'by' ? 'is-active' : ''} onClick={onControl}>by</li>
-        <li className="punxy__seed" onClick={onSeed}>seed</li>
+        <li className="punxy__seed" onClick={onRefresh}>refresh</li>
       </ul>
     </div>
   );

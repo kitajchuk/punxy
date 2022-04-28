@@ -32,12 +32,32 @@ body {
   font-size: 14px;
   line-height: 1.7142857143;
 
-  &.is-jobs {
+  &.top {
+    color: $pink;
+    background-color: $grey-black;
+  }
+
+  &.best {
+    color: $grey-dark;
+    background-color: $pink;
+  }
+
+  &.ask {
+    color: $green;
+    background-color: $purple;
+  }
+
+  &.show {
+    color: $teal;
+    background-color: $grey-dark;
+  }
+
+  &.jobs {
     color: $white;
     background-color: $black;
   }
 
-  &.is-wtf {
+  &.info {
     background-color: $teal;
     color: $purple;
   }
@@ -61,11 +81,27 @@ strong {
 .-ul {
   border-bottom: 1px solid $black;
 
-  .is-jobs & {
+  .top & {
+    border-bottom-color: $pink;
+  }
+
+  .best & {
+    border-bottom-color: $grey-dark;
+  }
+
+  .ask & {
+    border-bottom-color: $green;
+  }
+
+  .show & {
+    border-bottom-color: $teal;
+  }
+
+  .jobs & {
     border-bottom-color: $white;
   }
 
-  .is-wtf & {
+  .info & {
     border-bottom-color: $purple;
   }
 }
@@ -74,16 +110,32 @@ strong {
   display: inline;
   
   svg {
-    width: 20px;
-    height: 20px;
-    transform: translate3d(10px, 2px, 0);
+    width: 16px;
+    height: 16px;
+    transform: translate3d(10px, 1px, 0);
 
     @media (max-width: $mob-width) {
       width: 16px;
       height: 16px;
     }
 
-    .is-jobs & {
+    .top & {
+      fill: $pink;
+    }
+
+    .best & {
+      fill: $grey-dark;
+    }
+
+    .ask & {
+      fill: $green;
+    }
+
+    .show & {
+      fill: $teal;
+    }
+
+    .jobs & {
       fill: $white;
     }
   }

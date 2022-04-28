@@ -7,4 +7,8 @@ punxy
 [![CI](https://github.com/kitajchuk/punxy/actions/workflows/main.yml/badge.svg)](https://github.com/kitajchuk/punxy/actions/workflows/main.yml)
 [![CircleCI Status](https://circleci.com/gh/kitajchuk/punxy.svg?style=shield)](https://app.circleci.com/pipelines/github/kitajchuk/punxy)
 
+your proxy to the [hacker news](https://news.ycombinator.com/) feeds and the latest freelance nets.
+
+this app is using the [hacker news API](https://github.com/HackerNews/API). save to homescreen for the app experience!
+
 <img src="./public/punxy.png" width="100%" />

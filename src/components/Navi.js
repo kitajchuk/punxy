@@ -1,26 +1,19 @@
 import { NavLink } from 'react-router-dom';
+import routes from '../routes'
 
 export default function Navi() {
   return (
     <nav className="punxy__navi">
       <ul className="-ul">
-        <li>
-          <NavLink to="/" className="punxy__link" exact activeClassName="is-active">
-            news
-          </NavLink>
-        </li>
-        <li>&nbsp;/&nbsp;</li>
-        <li>
-          <NavLink to="/jobs" className="punxy__link" activeClassName="is-active">
-            jobs
-          </NavLink>
-        </li>
-        <li>&nbsp;/&nbsp;</li>
-        <li>
-          <NavLink to="/about" className="punxy__link" activeClassName="is-active">
-            wtf?
-          </NavLink>
-        </li>
+        {routes.map(({ path, label }) => {
+          return (
+            <li key={label}>
+              <NavLink to={path} className={({isActive}) => `punxy__link${isActive ? ' is-active' : ''}`}>
+                {label}
+              </NavLink>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

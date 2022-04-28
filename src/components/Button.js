@@ -1,4 +1,4 @@
-import { Animate } from './animate';
+import { Animate } from './Animation';
 
 export default function Button(props) {
   return (

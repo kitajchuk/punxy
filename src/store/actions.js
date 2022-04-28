@@ -18,7 +18,7 @@ export const loadItems = createAsyncThunk('punxy/loadItems', async (args, thunkA
   return { ids, items, endpoint };
 });
 
-export const seedItems = createAsyncThunk('punxy/seedItems', async (args) => {
+export const refreshItems = createAsyncThunk('punxy/refreshItems', async (args) => {
   const { endpoint } = args;
   const ids = await getIds(endpoint);
   const items = await getItems(ids, 0);

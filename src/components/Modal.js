@@ -6,11 +6,11 @@ export default function Modal({abortHandler, confirmHandler}) {
     <div className="punxy__modal">
       <div className="punxy__modal__wrap">
         <Masthead>
-          <h1>seeding disperses your data blocks on the P2P network. your local store will be replenished with new blocks from peer nodes.<br /><br /><strong>fight the power</strong>.</h1>
+          <h1>your local store will be replenished with new data from network nodes.<br /><br /><strong>fight the power</strong>.</h1>
         </Masthead>
         <div className="punxy__btns">
-          <Button handler={abortHandler}>back out</Button>
-          <Button handler={confirmHandler}>do it</Button>
+          <Button handler={abortHandler}>cancel</Button>
+          <Button handler={confirmHandler}>confirm</Button>
         </div>
       </div>
     </div>
