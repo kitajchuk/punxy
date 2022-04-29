@@ -37,7 +37,7 @@ export default function Feed({endpoint}) {
   let buttonText;
 
   if (status === 'loading') {
-    buttonText = `fetching more ${endpoint}...';
+    buttonText = `fetching more ${endpoint}...`;
 
   } else if (status === `endofline_${endpoint}`) {
     buttonText = 'end of line. try refreshing...';
