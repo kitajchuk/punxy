@@ -158,7 +158,6 @@
   padding: 64px 0;
   max-width: 420px;
   width: 100%;
-  // margin: 0 auto;
 
   svg {
     width: 100%;
@@ -333,6 +332,13 @@
 .punxy__list,
 .punxy__load {
   padding: 32px 0;
+}
+
+.punxy__load {
+  @media (max-width: $min-width) {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
 }
 
 .punxy__item {
