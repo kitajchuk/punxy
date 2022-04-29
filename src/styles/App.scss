@@ -223,31 +223,6 @@
   }
 }
 
-.punxy__seed {
-  background-color: transparent;
-  cursor: pointer;
-
-  .top & {
-    color: $pink;
-  }
-
-  .best & {
-    color: $grey-dark;
-  }
-
-  .ask & {
-    color: $green;
-  }
-
-  .show & {
-    color: $teal;
-  }
-
-  .jobs & {
-    color: $white;
-  }
-}
-
 .punxy__btn {
   background-color: $black;
   color: $white;
