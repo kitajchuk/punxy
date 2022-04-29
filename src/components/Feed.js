@@ -9,11 +9,7 @@ import Loading from './Loading';
 import List from './List';
 import Modal from './Modal';
 
-export default function Feed({
-  endpoint,
-  loading1 = 'connecting to network nodes...',
-  loading2 = 'querying latest data blocks...',
-}) {
+export default function Feed({endpoint}) {
   // State from the redux store
   const items = useSelector(selectItems(endpoint));
   const status = useSelector(selectStatus);
@@ -28,7 +24,11 @@ export default function Feed({
   const [sort, setSort] = useState('hi-lo');
 
   // Contextual load texts
-  const [loadText, setLoadText] = useState(status === 'refreshing' ? 'refreshing data blocks...' : loading1);
+  const [loadText, setLoadText] = useState(
+    status === 'refreshing' 
+      ? `refreshing ${endpoint}...` 
+      : `fetching latest ${endpoint}`
+  );
 
   // Track when we're refreshing the datas...
   const [refreshing, setRefreshing] = useState(false);
@@ -37,13 +37,13 @@ export default function Feed({
   let buttonText;
 
   if (status === 'loading') {
-    buttonText = 'querying new data blocks...';
+    buttonText = `fetching more ${endpoint}...';
 
   } else if (status === `endofline_${endpoint}`) {
     buttonText = 'end of line. try refreshing...';
 
   } else {
-    buttonText = 'load more';
+    buttonText = 'get more';
   }
 
   const onControl = (ctrl) => {
@@ -81,7 +81,7 @@ export default function Feed({
       return;
     }
 
-    setLoadText('refreshing network blocks...');
+    setLoadText(`refreshing ${endpoint}...`);
     setRefreshing(false);
 
     dispatch(refreshItems({
@@ -91,16 +91,11 @@ export default function Feed({
 
   useEffect(() => {
     if (!items.length) {
-      setTimeout(() => {
-        setLoadText(loading2);
-      }, 1000);
-      setTimeout(() => {
-        dispatch(loadItems({
-          endpoint,
-        }));
-      }, 2000);
+      dispatch(loadItems({
+        endpoint,
+      }));
     }
-  }, [items, dispatch, endpoint, loading2]);
+  }, [items, dispatch, endpoint]);
 
   return (
     <main className="punxy__feed">
