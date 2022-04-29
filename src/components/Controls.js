@@ -17,7 +17,7 @@ export default function Controls({ctrlHandler, refreshHandler, active}) {
         <li className={active === 'score' ? 'is-active' : ''} onClick={onControl}>score</li>
         <li>&nbsp;/&nbsp;</li>
         <li className={active === 'by' ? 'is-active' : ''} onClick={onControl}>by</li>
-        <li className="punxy__seed" onClick={onRefresh}>refresh</li>
+        <li onClick={onRefresh}>refresh</li>
       </ul>
     </div>
   );
