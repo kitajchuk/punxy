@@ -27,7 +27,7 @@ export default function Feed({endpoint}) {
   const [loadText, setLoadText] = useState(
     status === 'refreshing' 
       ? `refreshing ${endpoint}...` 
-      : `fetching latest ${endpoint}`
+      : `fetching latest ${endpoint}...`
   );
 
   // Track when we're refreshing the datas...
