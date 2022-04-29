@@ -421,7 +421,6 @@
     padding: 32px;
     overflow: hidden;
     background-color: $white;
-    border: 1px solid $black;
 
     @media (max-width: $min-width) {
       padding: 16px;
@@ -429,27 +428,22 @@
 
     .top & {
       background-color: $grey-black;
-      border: 1px solid $pink;
     }
 
     .best & {
       background-color: $pink;
-      border: 1px solid $grey-dark;
     }
 
     .ask & {
       background-color: $purple;
-      border: 1px solid $green;
     }
 
     .show & {
       background-color: $grey-dark;
-      border: 1px solid $teal;
     }
 
     .jobs & {
       background-color: $black;
-      border: 1px solid $white;
     }
   }
 }
