@@ -20,6 +20,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "prepare": "husky install",
+    "lint": "eslint src --ext js",
     "start": "cra-preact start",
     "build": "cra-preact build",
     "test": "cra-preact test",
@@ -27,6 +29,9 @@
     "deploy": "env-cmd -f .env yarn deploy-s3",
     "deploy-s3": "aws s3 sync ./build ${S3_BUCKET} --exclude '.*'",
     "postdeploy-s3": "aws cloudfront create-invalidation --distribution-id ${DISTRIBUTION_ID} --paths '/*'"
+  },
+  "lint-staged": {
+    "*.js": "yarn lint"
   },
   "eslintConfig": {
     "extends": [
@@ -47,7 +52,9 @@
     ]
   },
   "devDependencies": {
-    "cra-preact": "^0.4.0"
+    "cra-preact": "^0.4.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.1"
   },
   "jest": {
     "transformIgnorePatterns": []
