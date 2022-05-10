@@ -6,6 +6,9 @@
 $max-width: 1024px;
 $min-width: 768px;
 $mob-width: 480px;
+$font-base: 0.875rem;
+$font-small: 0.75rem;
+$font-medium: 1rem;
 
 /******************************************************************************
  * Colors
@@ -29,7 +32,7 @@ $teal: #2affea;
 body {
   color: $black;
   font-family: "panicsans", monospace;
-  font-size: 14px;
+  font-size: $font-base;
   line-height: 1.7142857143;
 
   &.top {
@@ -145,10 +148,10 @@ strong {
   appearance: none;
   border: 0;
   outline: 0;
-  font-size: 14px;
+  font-size: $font-base;
   line-height: 1;
 
   @media (max-width: $mob-width) {
-    font-size: 12px;
+    font-size: $font-small;
   }
 }

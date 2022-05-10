@@ -84,7 +84,7 @@
  * <Navi />
 *******************************************************************************/
 .punxy__navi {
-  font-size: 16px;
+  font-size: $font-medium;
   line-height: 2.3333333333;
   margin-top: 32px;
 
@@ -122,11 +122,11 @@
  * <Masthead />
 *******************************************************************************/
 .punxy__mast {
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 1.75;
 
   @media (max-width: $mob-width) {
-    font-size: 21px;
+    font-size: 1.3125rem;
   }
   
   h1 {
@@ -335,13 +335,13 @@
 }
 
 .punxy__title {
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 2;
   font-family: "panicsansbold";
   text-transform: lowercase;
 
   @media (max-width: $mob-width) {
-    font-size: 16px;
+    font-size: $font-medium;
   }
 }
 
