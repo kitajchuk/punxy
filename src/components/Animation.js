@@ -1,14 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
-import Controller from 'properjs-controller';
 
-// HOC
-// Usage: export default withAnimate(SomeComponent);
-// https://reactjs.org/docs/higher-order-components.html
 export function withAnimate(WrappedComponent) {
-  return ({...props}) => {
+  return function WrapperComponent({...props}) {
     const elRef = useRef();
-    const scRef = useRef();
+    const obRef = useRef();
     const [animated, setAnimated] = useState(false);
     const classes = {
       '-anim': true,
@@ -17,28 +13,22 @@ export function withAnimate(WrappedComponent) {
 
     useEffect(() => {
       if (elRef.current) {
-        // RAF utility
-        // check element bounds
-        // trigger animation & stop listening...
-        scRef.current = new Controller();
-        scRef.current.go(() => {
-          if (elRef.current) {
-            const bounds = elRef.current.getBoundingClientRect();
-
-            if (bounds.top < window.innerHeight && bounds.bottom > 0) {
-              scRef.current.stop();
-              setAnimated(true);
-            }
+        obRef.current = new IntersectionObserver((entries) => {
+          if (entries[ 0 ].isIntersecting) {
+            obRef.current.disconnect();
+            setAnimated(true);
           }
         });
+
+        obRef.current.observe(elRef.current);
       }
 
       return function cleanup() {
-        if (scRef.current) {
-          scRef.current.stop();
+        if (obRef.current) {
+          obRef.current.disconnect();
         }
       };
-    }, [elRef, scRef]);
+    }, []);
 
     return (
       <div ref={elRef} className={classNames(classes)}>
@@ -46,7 +36,7 @@ export function withAnimate(WrappedComponent) {
       </div>
     );
   };
-};
+}
 
 export const Animate = withAnimate((props) => {
   return props.children;

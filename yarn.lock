@@ -9021,11 +9021,6 @@ prop-types@^15.7.2:
     object-assign "^4.1.1"
     react-is "^16.8.1"
 
-properjs-controller@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/properjs-controller/-/properjs-controller-0.3.1.tgz#0f3e18c4b161b2c3030282c93e9ad91aa80baba0"
-  integrity sha512-F7EIXP1aXN79NXFsPwWUL13AHQM6fgGpeA5we6GewF0+siZ7yMLIy4zrDia5hTdhrEKabmLQkEwhEIoh28n/eQ==
-
 proxy-addr@~2.0.5:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-2.0.6.tgz#fdc2336505447d3f2f2c638ed272caf614bbb2bf"
