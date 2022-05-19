@@ -2,6 +2,12 @@
   command = "yarn build"
   publish = "build"
 
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
 [context.production]
   environment = { NODE_VERSION = "16.14.2" }
 
